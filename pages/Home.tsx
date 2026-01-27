@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalHeader from '../components/GlobalHeader';
+import { Testimonial } from '../components/ui/design-testimonial';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -137,6 +138,9 @@ const Home: React.FC = () => {
             </button>
           </div>
         </div>
+
+        {/* Testimonial Section */}
+        <Testimonial />
 
         {/* Footer / Trust Badge */}
         <div className="mt-8 px-6 py-10 bg-surface-light dark:bg-surface-dark border-t border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center text-center">
