@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalHeader from '../components/GlobalHeader';
@@ -97,9 +98,18 @@ const CRO: React.FC = () => {
                     icon: 'medication_liquid', color: 'text-amber-600', bg: 'bg-amber-50 dark:bg-amber-900/20', 
                     title: 'AI for Drug Discovery', 
                     desc: 'Accelerate hit-to-lead optimization with generative AI models that predict molecule properties and binding affinities.' 
+                },
+                { 
+                    icon: 'smart_toy', color: 'text-primary', bg: 'bg-blue-50 dark:bg-blue-900/20', 
+                    title: 'VariantGPT Platform', 
+                    desc: 'AI Powered Clinical Variant Interpretation Platform. Interpret VCF files and generate clinician-ready reports in minutes.' 
                 }
             ].map((service, idx) => (
-                <div key={idx} className="bg-white/70 dark:bg-surface-dark/70 backdrop-blur-md border border-white/30 dark:border-white/5 rounded-xl p-5 hover:border-cro-primary/50 transition-all duration-300 cursor-pointer group hover:shadow-lg hover:-translate-y-0.5">
+                <div 
+                  key={idx} 
+                  onClick={() => navigate('/contact')}
+                  className="bg-white/70 dark:bg-surface-dark/70 backdrop-blur-md border border-white/30 dark:border-white/5 rounded-xl p-5 hover:border-cro-primary/50 transition-all duration-300 cursor-pointer group hover:shadow-lg hover:-translate-y-0.5"
+                >
                     <div className="flex items-start justify-between mb-3">
                         <div className={`p-2.5 rounded-lg ${service.bg} ${service.color}`}>
                             <span className="material-symbols-outlined">{service.icon}</span>

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
@@ -9,6 +10,9 @@ import LiquidBiopsy from './pages/LiquidBiopsy';
 import Contact from './pages/Contact';
 import VariantGPT from './pages/VariantGPT';
 import TestRequestForm from './pages/TestRequestForm';
+import VariantFeatures from './pages/VariantFeatures';
+import VariantIntegration from './pages/VariantIntegration';
+import VariantSecurity from './pages/VariantSecurity';
 
 // --- Shared Layout Components ---
 
@@ -258,6 +262,9 @@ const App: React.FC = () => {
           <Route path="/liquid-biopsy" element={<LiquidBiopsy />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/variant-gpt" element={<VariantGPT />} />
+          <Route path="/variant-gpt/features" element={<VariantFeatures />} />
+          <Route path="/variant-gpt/integration" element={<VariantIntegration />} />
+          <Route path="/variant-gpt/security" element={<VariantSecurity />} />
           <Route path="/test-request" element={<TestRequestForm />} />
         </Routes>
       </Layout>

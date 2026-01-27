@@ -1,22 +1,17 @@
+
 'use client'
 import React from 'react'
-// Link was unused and imported incorrectly. Removing it.
-import { Button } from './button' // Relative import
-import { InfiniteSlider } from './infinite-slider' // Relative import
-import { ProgressiveBlur } from './progressive-blur' // Relative import
-import { cn } from '../../lib/utils' // Relative import
+import { Button } from './button' 
+import { InfiniteSlider } from './infinite-slider' 
+import { ProgressiveBlur } from './progressive-blur' 
+import { cn } from '../../lib/utils' 
 import { Menu, X, ChevronRight } from 'lucide-react'
-import { useScroll, motion } from 'framer-motion' // Changed from motion/react
+import { useScroll, motion } from 'framer-motion' 
 import { useNavigate } from 'react-router-dom'
 
 export function HeroSection() {
     const navigate = useNavigate();
     
-    // Helper for navigation
-    const handleNav = (path: string) => {
-        navigate(path);
-    };
-
     return (
         <>
             <HeroHeader />
@@ -37,7 +32,7 @@ export function HeroSection() {
                                     <Button
                                         size="lg"
                                         className="h-12 rounded-full pl-5 pr-3 text-base bg-primary hover:bg-primary-dark text-white cursor-pointer"
-                                        onClick={() => handleNav('/contact')}
+                                        onClick={() => window.open('https://variantgpt.pages.dev/login', '_blank')}
                                     >
                                         <span className="text-nowrap">Analyze Sample</span>
                                         <ChevronRight className="ml-1" />
@@ -46,7 +41,7 @@ export function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-12 rounded-full px-5 text-base hover:bg-zinc-950/5 dark:hover:bg-white/5 cursor-pointer text-slate-900 dark:text-white"
-                                        onClick={() => handleNav('/about')}
+                                        onClick={() => window.open('https://variantgpt-onboarding.pages.dev/', '_blank')}
                                     >
                                         <span className="text-nowrap">Read Whitepaper</span>
                                     </Button>
@@ -129,10 +124,10 @@ export function HeroSection() {
 }
 
 const menuItems = [
-    { name: 'Features', href: '#' },
-    { name: 'Integration', href: '#' },
-    { name: 'API Docs', href: '#' },
-    { name: 'Security', href: '#' },
+    { name: 'Features', path: '/variant-gpt/features' },
+    { name: 'Integration', path: '/variant-gpt/integration' },
+    { name: 'API Docs', path: 'https://github.com/musicofthings/VariantGPT-v2', external: true },
+    { name: 'Security', path: '/variant-gpt/security' },
 ]
 
 const HeroHeader = () => {
@@ -147,6 +142,15 @@ const HeroHeader = () => {
         })
         return () => unsubscribe()
     }, [scrollYProgress])
+
+    const handleAction = (item: typeof menuItems[0]) => {
+        if (item.external) {
+            window.open(item.path, '_blank');
+        } else {
+            navigate(item.path);
+        }
+        setMenuState(false);
+    }
 
     return (
         <header>
@@ -180,7 +184,7 @@ const HeroHeader = () => {
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
                                             <button
-                                                onClick={() => navigate(item.href)}
+                                                onClick={() => handleAction(item)}
                                                 className="text-muted-foreground hover:text-primary block duration-150 font-medium">
                                                 <span>{item.name}</span>
                                             </button>
@@ -196,10 +200,7 @@ const HeroHeader = () => {
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
                                             <button
-                                                onClick={() => {
-                                                    navigate(item.href);
-                                                    setMenuState(false);
-                                                }}
+                                                onClick={() => handleAction(item)}
                                                 className="text-muted-foreground hover:text-primary block duration-150 font-medium">
                                                 <span>{item.name}</span>
                                             </button>

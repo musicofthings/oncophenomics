@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalHeader from '../components/GlobalHeader';
@@ -80,8 +81,18 @@ const Diagnostics: React.FC = () => {
                   Tissue biopsy remains the cornerstone of precision medicine, allowing us to map the tumor's DNA signature and match patients with specific immunotherapies and targeted drugs.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="inline-flex items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm border border-white/10">Mutation Profiling</span>
-                  <span className="inline-flex items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm border border-white/10">Drug Matching</span>
+                  <button 
+                    onClick={() => navigate('/cro')}
+                    className="inline-flex items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors"
+                  >
+                    Mutation Profiling
+                  </button>
+                  <button 
+                    onClick={() => navigate('/cro')}
+                    className="inline-flex items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors"
+                  >
+                    Drug Matching
+                  </button>
                 </div>
               </div>
             </div>

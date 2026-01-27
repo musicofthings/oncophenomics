@@ -1,9 +1,11 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalHeader from '../components/GlobalHeader';
 
 const LiquidBiopsy: React.FC = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'Process' | 'Benefits' | 'Applications'>('Process');
 
   return (
     <div className="flex flex-col font-display animate-in slide-in-from-right duration-300">
@@ -24,7 +26,7 @@ const LiquidBiopsy: React.FC = () => {
                     <span className="material-symbols-outlined text-white text-[16px]">science</span>
                     <span className="text-white text-xs font-bold uppercase tracking-wide">AI Enhanced</span>
                   </div>
-                  <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight drop-shadow-md">Precision Oncology</h1>
+                  <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight drop-shadow-md">Liquid Biopsy</h1>
                   <p className="text-slate-200 text-sm md:text-lg mt-1 font-medium">Next-generation circulating tumor DNA analysis</p>
                 </div>
               </div>
@@ -41,138 +43,145 @@ const LiquidBiopsy: React.FC = () => {
             </button>
           </div>
           <p className="text-slate-600 dark:text-slate-400 text-base font-normal leading-relaxed pt-3 max-w-3xl">
-            Liquid biopsy offers a non-invasive alternative to tissue biopsies. By utilizing a simple blood draw into a specialized Streck tube, we capture circulating tumor DNA (ctDNA) for precise AI-driven analysis.
+            Liquid biopsy offers a non-invasive alternative to tissue biopsies. By utilizing a simple blood draw, we capture circulating tumor DNA (ctDNA) for precise AI-driven analysis of cancer mutations and therapy response.
           </p>
         </div>
 
         {/* Tabs */}
         <div className="sticky top-[60px] z-40 bg-background-light dark:bg-background-dark pb-4 pt-2 px-4 mt-2 justify-center flex">
           <div className="flex h-12 w-full max-w-md items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800/80 p-1">
-            <label className="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 bg-white dark:bg-slate-700 shadow-sm transition-all duration-200 border border-slate-100 dark:border-slate-600">
-              <span className="truncate text-primary dark:text-sky-400 text-sm font-bold leading-normal">Process</span>
-              <input defaultChecked className="hidden" name="view-mode" type="radio" value="Process" />
-            </label>
-            <label className="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-all duration-200">
-              <span className="truncate text-sm font-medium leading-normal">Benefits</span>
-              <input className="hidden" name="view-mode" type="radio" value="Benefits" />
-            </label>
-            <label className="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-all duration-200">
-              <span className="truncate text-sm font-medium leading-normal">Applications</span>
-              <input className="hidden" name="view-mode" type="radio" value="Applications" />
-            </label>
+            <button 
+              onClick={() => setActiveTab('Process')}
+              className={`flex h-full grow items-center justify-center overflow-hidden rounded-lg px-2 transition-all duration-200 ${activeTab === 'Process' ? 'bg-white dark:bg-slate-700 shadow-sm border border-slate-100 dark:border-slate-600 text-primary dark:text-sky-400 font-bold' : 'text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50'}`}
+            >
+              <span className="truncate text-sm leading-normal">Process</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab('Benefits')}
+              className={`flex h-full grow items-center justify-center overflow-hidden rounded-lg px-2 transition-all duration-200 ${activeTab === 'Benefits' ? 'bg-white dark:bg-slate-700 shadow-sm border border-slate-100 dark:border-slate-600 text-primary dark:text-sky-400 font-bold' : 'text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50'}`}
+            >
+              <span className="truncate text-sm leading-normal">Benefits</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab('Applications')}
+              className={`flex h-full grow items-center justify-center overflow-hidden rounded-lg px-2 transition-all duration-200 ${activeTab === 'Applications' ? 'bg-white dark:bg-slate-700 shadow-sm border border-slate-100 dark:border-slate-600 text-primary dark:text-sky-400 font-bold' : 'text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-100 dark:hover:bg-slate-700/50'}`}
+            >
+              <span className="truncate text-sm leading-normal">Applications</span>
+            </button>
           </div>
         </div>
 
-        {/* Steps List */}
-        <div className="flex flex-col md:grid md:grid-cols-3 gap-8 px-5 py-4">
-          
-          {/* Step 1 */}
-          <div className="flex md:flex-col gap-4 group md:items-start md:text-left">
-            <div className="flex flex-col items-center md:items-start">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-100 dark:bg-sky-900/30 text-primary shrink-0 ring-4 ring-white dark:ring-background-dark z-10">
-                <span className="material-symbols-outlined">hematology</span>
-              </div>
-              <div className="h-full w-0.5 md:w-full md:h-0.5 bg-gradient-to-b md:bg-gradient-to-r from-sky-200 to-slate-200 dark:from-sky-900 dark:to-slate-800 -my-2 md:my-0 md:-mx-2 rounded-full md:hidden"></div>
-            </div>
-            <div className="pb-6 pt-1 md:pt-4">
-              <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-2">Sample Collection</h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-                10ml of peripheral blood is drawn into a Streck Cell-Free DNA BCT. This specialized tube stabilizes nucleated blood cells, preventing genomic DNA release.
-              </p>
-              <div className="flex gap-2">
-                <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">Non-invasive</span>
-                <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">Painless</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Step 2 */}
-          <div className="flex md:flex-col gap-4 group md:items-start md:text-left">
-            <div className="flex flex-col items-center md:items-start">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-secondary shrink-0 ring-4 ring-white dark:ring-background-dark z-10">
-                <span className="material-symbols-outlined">biotech</span>
-              </div>
-              <div className="h-full w-0.5 md:w-full md:h-0.5 bg-gradient-to-b md:bg-gradient-to-r from-cyan-200 to-slate-200 dark:from-cyan-900 dark:to-slate-800 -my-2 md:my-0 md:-mx-2 rounded-full md:hidden"></div>
-            </div>
-            <div className="pb-6 pt-1 md:pt-4">
-              <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-2">cfDNA Extraction</h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                Plasma is isolated via centrifugation. Cell-free DNA (cfDNA) is then extracted and prepared for next-generation sequencing (NGS).
-              </p>
-            </div>
-          </div>
-
-          {/* Step 3 */}
-          <div className="flex md:flex-col gap-4 group md:items-start md:text-left">
-            <div className="flex flex-col items-center md:items-start">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-white shadow-lg shadow-primary/30 shrink-0 ring-4 ring-white dark:ring-background-dark z-10">
-                <span className="material-symbols-outlined">smart_toy</span>
-              </div>
-            </div>
-            <div className="pt-1 w-full md:pt-4">
-              <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-2">AI Analysis</h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
-                Our proprietary AI algorithms scan the sequenced data for somatic mutations, analyzing tumor fraction and resistance mechanisms in real-time.
-              </p>
-              <div className="p-4 bg-white dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full -mr-4 -mt-4"></div>
-                <div className="flex items-center gap-3 mb-3 relative z-10">
-                  <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 ring-2 ring-emerald-50 dark:ring-emerald-900/40">
-                    <span className="material-symbols-outlined text-[18px]">check</span>
+        {/* Tab Content */}
+        <div className="px-5 py-4 min-h-[400px]">
+          {activeTab === 'Process' && (
+            <div className="flex flex-col md:grid md:grid-cols-3 gap-8 animate-in fade-in duration-300">
+              <div className="flex md:flex-col gap-4 group md:items-start md:text-left">
+                <div className="flex flex-col items-center md:items-start">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-100 dark:bg-sky-900/30 text-primary shrink-0 ring-4 ring-white dark:ring-background-dark z-10">
+                    <span className="material-symbols-outlined">hematology</span>
                   </div>
-                  <div className="text-sm font-bold text-slate-900 dark:text-white">High Accuracy Detection</div>
                 </div>
-                <div className="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 mb-2">
-                  <div className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full w-[94.8%] shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
+                <div className="pb-6 pt-1 md:pt-4">
+                  <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-2">Sample Collection</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
+                    Peripheral blood is drawn into specialized stabilization tubes to preserve circulating tumor DNA and prevent genomic DNA contamination.
+                  </p>
                 </div>
-                <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
-                  <span>Sensitivity</span>
-                  <span className="font-mono text-slate-900 dark:text-white font-bold">94.8%</span>
+              </div>
+              <div className="flex md:flex-col gap-4 group md:items-start md:text-left">
+                <div className="flex flex-col items-center md:items-start">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-secondary shrink-0 ring-4 ring-white dark:ring-background-dark z-10">
+                    <span className="material-symbols-outlined">biotech</span>
+                  </div>
+                </div>
+                <div className="pb-6 pt-1 md:pt-4">
+                  <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-2">cfDNA Extraction</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Plasma is isolated via double-centrifugation. Cell-free DNA (cfDNA) is extracted and sequenced using high-depth NGS for maximum sensitivity.
+                  </p>
+                </div>
+              </div>
+              <div className="flex md:flex-col gap-4 group md:items-start md:text-left">
+                <div className="flex flex-col items-center md:items-start">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-white shadow-lg shadow-primary/30 shrink-0 ring-4 ring-white dark:ring-background-dark z-10">
+                    <span className="material-symbols-outlined">smart_toy</span>
+                  </div>
+                </div>
+                <div className="pt-1 w-full md:pt-4">
+                  <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-2">AI Analysis</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                    Proprietary algorithms differentiate between somatic mutations and clonal hematopoiesis, providing actionable therapeutic recommendations.
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          )}
 
-        {/* Comparison Grid */}
-        <div className="px-5 pb-8 mt-4">
-          <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-4">Why choose Liquid Biopsy?</h3>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-sky-50 dark:bg-sky-900/10 rounded-2xl border border-sky-100 dark:border-sky-800/50 relative overflow-hidden group hover:border-sky-300 dark:hover:border-sky-700 transition-colors">
-              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full -mr-4 -mt-4"></div>
-              <div className="font-bold text-primary dark:text-sky-400 mb-3 flex items-center gap-2">
-                <div className="bg-white dark:bg-sky-950 p-1.5 rounded-lg shadow-sm">
-                  <span className="material-symbols-outlined text-[20px]">water_drop</span>
+          {activeTab === 'Benefits' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in duration-300">
+              <div className="p-6 bg-white dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-primary mb-4">
+                  <span className="material-symbols-outlined">personal_injury</span>
                 </div>
-                Liquid
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Non-Invasive Nature</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Avoids surgical risks, pain, and recovery time associated with traditional tissue biopsies, allowing for safer longitudinal monitoring.</p>
               </div>
-              <ul className="space-y-2.5">
-                {['Minimal risk', 'Repeatable', 'Fast results'].map(item => (
-                  <li key={item} className="flex items-start gap-2 text-xs font-medium text-slate-700 dark:text-slate-300">
-                    <span className="material-symbols-outlined text-emerald-500 text-[16px] shrink-0 font-bold">check</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="p-6 bg-white dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 flex items-center justify-center text-secondary mb-4">
+                  <span className="material-symbols-outlined">query_stats</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Overcoming Heterogeneity</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Captures a more holistic view of tumor genomics compared to a localized tissue sample, which may miss mutations present in other metastatic sites.</p>
+              </div>
+              <div className="p-6 bg-white dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 mb-4">
+                  <span className="material-symbols-outlined">speed</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Real-Time Insight</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Enables rapid assessment of treatment efficacy within weeks, allowing clinicians to switch therapies faster if a patient is not responding.</p>
+              </div>
+              <div className="p-6 bg-white dark:bg-surface-dark rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 mb-4">
+                  <span className="material-symbols-outlined">visibility</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">MRD Detection</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Highest sensitivity for Minimal Residual Disease (MRD), identifying molecular relapse months before clinical or radiographic evidence.</p>
+              </div>
             </div>
+          )}
 
-            <div className="p-4 bg-white dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-slate-700">
-              <div className="font-bold text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
-                <div className="bg-slate-50 dark:bg-slate-800 p-1.5 rounded-lg">
-                  <span className="material-symbols-outlined text-[20px]">content_cut</span>
+          {activeTab === 'Applications' && (
+            <div className="space-y-4 animate-in fade-in duration-300">
+              <div className="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-100 dark:border-slate-800 items-start">
+                <span className="material-symbols-outlined text-primary bg-primary/10 p-3 rounded-xl">monitoring</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 dark:text-white">Therapy Selection</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Identifying specific targetable mutations (e.g., EGFR, KRAS, ALK) to match patients with FDA-approved targeted therapies or clinical trials.</p>
                 </div>
-                Tissue
               </div>
-              <ul className="space-y-2.5">
-                {['Invasive', 'Painful', 'Slow turnover'].map(item => (
-                  <li key={item} className="flex items-start gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
-                    <span className="material-symbols-outlined text-rose-400 text-[16px] shrink-0 font-bold">close</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-100 dark:border-slate-800 items-start">
+                <span className="material-symbols-outlined text-secondary bg-secondary/10 p-3 rounded-xl">history</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 dark:text-white">Monitoring Resistance</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Detecting the emergence of resistance mutations early, providing a window for proactive therapy adjustment.</p>
+                </div>
+              </div>
+              <div className="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-100 dark:border-slate-800 items-start">
+                <span className="material-symbols-outlined text-indigo-500 bg-indigo-500/10 p-3 rounded-xl">vaccines</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 dark:text-white">Immunotherapy Response</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Tracking ctDNA kinetics as a biomarker for checkpoint inhibitor response, differentiating between pseudoprogression and true disease growth.</p>
+                </div>
+              </div>
+              <div className="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-100 dark:border-slate-800 items-start">
+                <span className="material-symbols-outlined text-rose-500 bg-rose-500/10 p-3 rounded-xl">clinical_notes</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 dark:text-white">Clinical Research</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Large-scale screening for drug development programs and real-world evidence gathering on tumor evolution.</p>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="h-24 md:h-0"></div>
