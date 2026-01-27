@@ -177,8 +177,9 @@ const LiquidBiopsy: React.FC = () => {
 
         <div className="h-24 md:h-0"></div>
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 max-w-md mx-auto z-50 md:static md:bg-transparent md:border-none md:max-w-xs md:mb-12">
-          <button onClick={() => navigate('/contact')} className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-primary/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-            <span>Request Consultation</span>
+          <button onClick={() => navigate('/test-request')} className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-primary/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
+            <span>Order a test</span>
             <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
           </button>
         </div>
