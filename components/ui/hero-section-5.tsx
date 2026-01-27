@@ -153,10 +153,10 @@ const HeroHeader = () => {
     }
 
     return (
-        <header>
+        <header className="md:pl-64">
             <nav
                 data-state={menuState && 'active'}
-                className="group fixed z-20 w-full pt-2">
+                className="group fixed z-20 w-full md:w-[calc(100%-256px)] pt-2">
                 <div className={cn('mx-auto max-w-7xl rounded-3xl px-6 transition-all duration-300 lg:px-12', scrolled && 'bg-background/80 backdrop-blur-2xl shadow-sm')}>
                     <motion.div
                         key={1}

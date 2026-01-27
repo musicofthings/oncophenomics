@@ -79,6 +79,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [expandServices, setExpandServices] = useState(true);
   const [expandDiagnostics, setExpandDiagnostics] = useState(true);
+  const [expandVariant, setExpandVariant] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -113,17 +114,48 @@ const Sidebar = () => {
            <span>Platform</span>
         </button>
 
-        {/* VariantGPT - New Link */}
-        <button 
-          onClick={() => navigate('/variant-gpt')} 
-          className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium text-sm text-left
-            ${isActive('/variant-gpt') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'}
-          `}
-        >
-           <span className={`material-symbols-outlined text-[22px] ${isActive('/variant-gpt') ? 'filled' : ''}`}>smart_toy</span>
-           <span>VariantGPT</span>
-           <span className="ml-auto text-[10px] font-bold text-white bg-gradient-to-r from-primary to-secondary px-1.5 py-0.5 rounded">NEW</span>
-        </button>
+        {/* VariantGPT - Expandable */}
+        <div className="mt-1">
+          <button 
+            onClick={() => setExpandVariant(!expandVariant)} 
+            className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl transition-all duration-200 font-medium text-sm text-left group
+              ${isActive('/variant-gpt') || location.pathname.startsWith('/variant-gpt') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'}
+            `}
+          >
+             <span className={`material-symbols-outlined text-[22px] ${(isActive('/variant-gpt') || location.pathname.startsWith('/variant-gpt')) ? 'filled' : ''}`}>smart_toy</span>
+             <span className="flex-1">VariantGPT</span>
+             <span className="material-symbols-outlined text-[18px] opacity-50">{expandVariant ? 'expand_less' : 'expand_more'}</span>
+          </button>
+
+          {expandVariant && (
+            <div className="flex flex-col gap-1 ml-6 pl-3 border-l border-slate-200 dark:border-slate-700 mt-1">
+                <button 
+                  onClick={() => navigate('/variant-gpt')} 
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 font-medium text-sm text-left ${isActive('/variant-gpt') ? 'text-primary' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
+                >
+                    <span>Overview</span>
+                </button>
+                <button 
+                  onClick={() => navigate('/variant-gpt/features')} 
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 font-medium text-sm text-left ${isActive('/variant-gpt/features') ? 'text-primary' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
+                >
+                    <span>Features</span>
+                </button>
+                <button 
+                  onClick={() => navigate('/variant-gpt/integration')} 
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 font-medium text-sm text-left ${isActive('/variant-gpt/integration') ? 'text-primary' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
+                >
+                    <span>Integration</span>
+                </button>
+                <button 
+                  onClick={() => navigate('/variant-gpt/security')} 
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 font-medium text-sm text-left ${isActive('/variant-gpt/security') ? 'text-primary' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
+                >
+                    <span>Security</span>
+                </button>
+            </div>
+          )}
+        </div>
 
         {/* Services Group */}
         <div className="mt-2">

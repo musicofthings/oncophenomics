@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -14,6 +15,11 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = ({ title, transparent = false 
   const menuItems = [
     { label: 'Home', path: '/', isHeader: false },
     { label: 'Platform', path: '/platform', isHeader: false },
+    { label: 'VariantGPT', path: '#', isHeader: true },
+    { label: 'Overview', path: '/variant-gpt', indent: true },
+    { label: 'Features', path: '/variant-gpt/features', indent: true },
+    { label: 'Integration', path: '/variant-gpt/integration', indent: true },
+    { label: 'Security', path: '/variant-gpt/security', indent: true },
     { label: 'Services', path: '#', isHeader: true },
     { label: 'CRO Solutions', path: '/cro', indent: true },
     { label: 'Tissue Biopsy', path: '/diagnostics', indent: true },
