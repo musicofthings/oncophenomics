@@ -1,12 +1,12 @@
 
 import React from 'react';
-import GlobalHeader from '../components/GlobalHeader';
+import { VariantGPTHeader } from '../components/VariantGPTHeader';
 
 const VariantSecurity: React.FC = () => {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark font-display">
-      <GlobalHeader title="Security & Compliance" />
-      <div className="max-w-4xl mx-auto px-6 py-16">
+      <VariantGPTHeader />
+      <div className="max-w-4xl mx-auto px-6 py-32">
         <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8">Enterprise-Grade Patient Privacy</h1>
         <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-10 text-white shadow-2xl mb-12 relative overflow-hidden">
            <div className="absolute top-0 right-0 p-8 opacity-20">
@@ -24,11 +24,11 @@ const VariantSecurity: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-           <div>
+           <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark shadow-sm">
              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Private Cloud Deployment</h3>
              <p className="text-slate-600 dark:text-slate-400">For institutions with strict data residency requirements, VariantGPT can be deployed within your own AWS, Azure, or GCP Virtual Private Cloud (VPC).</p>
            </div>
-           <div>
+           <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark shadow-sm">
              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Audit Logs & Access Control</h3>
              <p className="text-slate-600 dark:text-slate-400">Detailed RBAC (Role Based Access Control) and comprehensive immutable audit trails for every report generated and every variant classified.</p>
            </div>

@@ -5,16 +5,16 @@ import { Button } from './button'
 import { InfiniteSlider } from './infinite-slider' 
 import { ProgressiveBlur } from './progressive-blur' 
 import { cn } from '../../lib/utils' 
-import { Menu, X, ChevronRight } from 'lucide-react'
-import { useScroll, motion } from 'framer-motion' 
+import { ChevronRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { VariantGPTHeader } from '../VariantGPTHeader'
 
 export function HeroSection() {
     const navigate = useNavigate();
     
     return (
         <>
-            <HeroHeader />
+            <VariantGPTHeader />
             <main className="overflow-x-hidden font-sans">
                 <section>
                     <div className="py-24 md:pb-32 lg:pb-36 lg:pt-36">
@@ -49,12 +49,20 @@ export function HeroSection() {
                             </div>
                         </div>
                         <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-black/10 sm:aspect-video lg:rounded-[3rem] dark:border-white/5 mt-20 lg:mt-0">
+                            {/* DNA Line Art / Model Image with grayscale effect */}
+                            <div className="absolute inset-0 z-0">
+                              <img 
+                                src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2000&auto=format&fit=crop" 
+                                className="size-full object-cover grayscale opacity-30 dark:opacity-20 mix-blend-overlay"
+                                alt="DNA Background"
+                              />
+                            </div>
                             <video
                                 autoPlay
                                 loop
                                 muted
                                 playsInline
-                                className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
+                                className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75 relative z-10"
                                 src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"></video>
                         </div>
                     </div>
@@ -120,123 +128,5 @@ export function HeroSection() {
                 </section>
             </main>
         </>
-    )
-}
-
-const menuItems = [
-    { name: 'Features', path: '/variant-gpt/features' },
-    { name: 'Integration', path: '/variant-gpt/integration' },
-    { name: 'API Docs', path: 'https://github.com/musicofthings/VariantGPT-v2', external: true },
-    { name: 'Security', path: '/variant-gpt/security' },
-]
-
-const HeroHeader = () => {
-    const [menuState, setMenuState] = React.useState(false)
-    const [scrolled, setScrolled] = React.useState(false)
-    const { scrollYProgress } = useScroll()
-    const navigate = useNavigate();
-
-    React.useEffect(() => {
-        const unsubscribe = scrollYProgress.on('change', (latest) => {
-            setScrolled(latest > 0.05)
-        })
-        return () => unsubscribe()
-    }, [scrollYProgress])
-
-    const handleAction = (item: typeof menuItems[0]) => {
-        if (item.external) {
-            window.open(item.path, '_blank');
-        } else {
-            navigate(item.path);
-        }
-        setMenuState(false);
-    }
-
-    return (
-        <header className="md:pl-64">
-            <nav
-                data-state={menuState && 'active'}
-                className="group fixed z-20 w-full md:w-[calc(100%-256px)] pt-2">
-                <div className={cn('mx-auto max-w-7xl rounded-3xl px-6 transition-all duration-300 lg:px-12', scrolled && 'bg-background/80 backdrop-blur-2xl shadow-sm')}>
-                    <motion.div
-                        key={1}
-                        className={cn('relative flex flex-wrap items-center justify-between gap-6 py-3 duration-200 lg:gap-0 lg:py-6', scrolled && 'lg:py-4')}>
-                        <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
-                            <button
-                                onClick={() => navigate('/')}
-                                aria-label="home"
-                                className="flex items-center space-x-2">
-                                <Logo />
-                                <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white hidden md:block">VariantGPT</span>
-                            </button>
-
-                            <button
-                                onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden text-slate-900 dark:text-white"
-                            >
-                                <Menu className="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                <X className="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-                            </button>
-
-                            <div className="hidden lg:block">
-                                <ul className="flex gap-8 text-sm">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <button
-                                                onClick={() => handleAction(item)}
-                                                className="text-muted-foreground hover:text-primary block duration-150 font-medium">
-                                                <span>{item.name}</span>
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div className="bg-surface-light dark:bg-surface-dark group-data-[state=active]:block lg:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
-                            <div className="lg:hidden">
-                                <ul className="space-y-6 text-base text-slate-900 dark:text-white">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <button
-                                                onClick={() => handleAction(item)}
-                                                className="text-muted-foreground hover:text-primary block duration-150 font-medium">
-                                                <span>{item.name}</span>
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => navigate('/contact')}
-                                    className="cursor-pointer"
-                                >
-                                    <span>Request Access</span>
-                                </Button>
-                                <Button
-                                    size="sm"
-                                    onClick={() => navigate('/platform')}
-                                    className="bg-primary hover:bg-primary-dark text-white cursor-pointer"
-                                >
-                                    <span>Launch App</span>
-                                </Button>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </nav>
-        </header>
-    )
-}
-
-const Logo = ({ className }: { className?: string }) => {
-    return (
-        <div className={cn('h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold', className)}>
-            V
-        </div>
     )
 }

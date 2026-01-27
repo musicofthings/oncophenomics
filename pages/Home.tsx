@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalHeader from '../components/GlobalHeader';
@@ -36,7 +37,7 @@ const Home: React.FC = () => {
                 Personalized cancer treatment plans derived from advanced genomic analysis and global clinical data.
               </p>
               <button 
-                onClick={() => navigate('/diagnostics')}
+                onClick={() => window.open('https://variantgpt.pages.dev/login', '_blank')}
                 className="w-full md:w-auto md:px-8 flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-blue-600 active:bg-blue-700 text-white font-bold h-12 transition-all shadow-lg shadow-blue-900/20"
               >
                 <span className="material-symbols-outlined text-[20px]">add_circle</span>
@@ -91,7 +92,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkeTYnn2qja3pP4xzTb61BAxYKGsa6w2Zp4dZCqyYf2aD52Y8qlXiNxmeq1LVAX8G1kRkcI5IyxNPEuiqy3b-FUIIKwmoetkpa16GAvKEXxMpIspOFnuLyQenq7GM_blPOcX2EdfLX4yXw6HM74HaJyk7Bzcx21UH85gKuEnqBLtQpv3h1drIkGwYKHrQTe23oWbd6OmqIdVfMrIYKORmhDtMnk2mOx0h3d26y32kSjb8B2C2mUcEnIuVizDD170_McuHgVfXyElb7")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkeTYnn2qja3pP4xzTb61BAxYKGsa6w2Zp4dZCqyYf2aD52Y8qlXiNxmeq1LVAX8G1kRkcI5IyxNPEuiqy3b-FUIIKwmoetkpa16GAvKEXxMpIspOFnuLyQen7GM_blPOcX2EdfLX4yXw6HM74HaJyk7Bzcx21UH85gKuEnqBLtQpv3h1drIkGwYKHrQTe23oWbd6OmqIdVfMrIYKORmhDtMnk2mOx0h3d26y32kSjb8B2C2mUcEnIuVizDD170_McuHgVfXyElb7")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-emerald-500">
                   <span className="material-symbols-outlined text-[20px]">timeline</span>
