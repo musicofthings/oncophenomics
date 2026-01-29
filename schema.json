@@ -1,0 +1,37 @@
+{
+  "collections": [
+    {
+      "name": "test_requests",
+      "description": "Clinical diagnostic test orders from physicians and patients.",
+      "fields": {
+        "patientName": "string",
+        "patientId": "string",
+        "clientName": "string",
+        "clientAccountNo": "string",
+        "diagnosisHistory": "string",
+        "clinicalSummary": "string",
+        "specimens": "array of objects {type, count, comments, source}",
+        "selectedTests": "map of string to boolean",
+        "orderingPhysicianSignature": "string",
+        "patientSignature": "string",
+        "status": "string (pending_accession, processing, completed)",
+        "createdAt": "timestamp",
+        "prescriptionFileName": "string",
+        "prescriptionFileData": "string (base64)"
+      }
+    },
+    {
+      "name": "contact_inquiries",
+      "description": "General support and partnership inquiries.",
+      "fields": {
+        "inquiryType": "string",
+        "name": "string",
+        "email": "string",
+        "org": "string",
+        "message": "string",
+        "createdAt": "timestamp",
+        "status": "string (new, in_review, responded)"
+      }
+    }
+  ]
+}

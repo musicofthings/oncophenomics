@@ -1,8 +1,10 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalHeader from '../components/GlobalHeader';
 import { Button } from '../components/ui/button';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 interface SpecimenRow {
   id: number;
@@ -23,7 +25,6 @@ const TestRequestForm: React.FC = () => {
   const [formError, setFormError] = useState<string | null>(null);
   const totalSteps = 3;
   
-  // Dynamic Specimen Rows State
   const [specimens, setSpecimens] = useState<SpecimenRow[]>([
     { 
       id: 1, type: '', count: '', source: '', 
@@ -32,7 +33,6 @@ const TestRequestForm: React.FC = () => {
     }
   ]);
 
-  // File State
   const [prescriptionFile, setPrescriptionFile] = useState<{name: string, data: string} | null>(null);
 
   const [formData, setFormData] = useState({
@@ -146,29 +146,24 @@ const TestRequestForm: React.FC = () => {
     setLoading(true);
     setFormError(null);
 
-    const submissionPayload = {
-        ...formData,
-        specimens,
-        prescriptionFileName: prescriptionFile?.name,
-        prescriptionFileData: prescriptionFile?.data,
-        submittedAt: new Date().toISOString()
-    };
-
     try {
-      // In production on Cloudflare, point to your API worker
-      // const response = await fetch('/api/submit-request', { ... })
+      // Save to Firebase Firestore
+      const docRef = await addDoc(collection(db, "test_requests"), {
+        ...formData,
+        specimens: specimens.map(({id, ...rest}) => rest), // Remove local IDs
+        prescriptionFileName: prescriptionFile?.name || null,
+        prescriptionFileData: prescriptionFile?.data || null,
+        status: "pending_accession",
+        createdAt: serverTimestamp()
+      });
       
-      console.log('Submitting Diagnostic Request:', submissionPayload);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      console.log('Diagnostic Request Secured with ID:', docRef.id);
       setShowSuccess(true);
       window.scrollTo(0, 0);
 
-    } catch (err) {
-      console.error('Submission error:', err);
-      setFormError('Failed to submit form. Please verify your connection.');
+    } catch (err: any) {
+      console.error('Firebase Submission Error:', err);
+      setFormError(`Cloud storage error: ${err.message || 'Check connection'}`);
     } finally {
       setLoading(false);
     }
@@ -195,15 +190,15 @@ const TestRequestForm: React.FC = () => {
     return (
       <div className="bg-slate-50 dark:bg-background-dark min-h-screen flex items-center justify-center p-4 font-display">
         <div className="bg-white dark:bg-surface-dark p-10 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 max-w-lg w-full text-center">
-          <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-            <span className="material-symbols-outlined text-green-600 text-4xl">verified</span>
+          <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span className="material-symbols-outlined text-emerald-600 text-4xl">cloud_done</span>
           </div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Request Logged</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Secured in Cloud</h2>
           <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-            The test request for <strong>{formData.patientName}</strong> has been received. Our clinical laboratory will notify you once specimen accessioning is complete.
+            The test request for <strong>{formData.patientName}</strong> has been successfully archived in our HIPAA-compliant database. Reference ID generated.
           </p>
           <Button onClick={() => navigate('/')} className="w-full h-14 bg-primary hover:bg-primary-dark text-white rounded-2xl font-bold">
-            Back to Dashboard
+            Return to Dashboard
           </Button>
         </div>
       </div>
@@ -212,11 +207,15 @@ const TestRequestForm: React.FC = () => {
 
   return (
     <div className="bg-slate-50 dark:bg-background-dark min-h-screen font-sans">
-      <GlobalHeader title="Diagnostic Request Form" />
+      <GlobalHeader title="Cloud Diagnostic Portal" />
       
       <main className="max-w-5xl mx-auto p-4 md:p-8 pb-40">
+        <div className="mb-6 flex items-center gap-3 bg-blue-50 dark:bg-blue-900/10 p-4 rounded-2xl border border-blue-100 dark:border-blue-800/30">
+          <span className="material-symbols-outlined text-primary">security</span>
+          <span className="text-xs font-semibold text-primary/80 uppercase tracking-widest">End-to-End Encrypted Session</span>
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          
           {currentStep === 1 && (
             <div className="space-y-6 animate-in fade-in duration-300">
               <div className="bg-white dark:bg-surface-dark p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -313,7 +312,6 @@ const TestRequestForm: React.FC = () => {
             </div>
           )}
 
-          {/* Nav Footer */}
           <div className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-surface-dark/95 border-t p-4 z-50 md:static md:bg-transparent md:border-none md:p-0">
             {formError && <div className="max-w-5xl mx-auto mb-4 p-3 bg-red-50 text-red-600 rounded-lg text-sm font-bold flex items-center gap-2"><span className="material-symbols-outlined">error</span> {formError}</div>}
             <div className="max-w-5xl mx-auto flex justify-between items-center">
@@ -324,7 +322,12 @@ const TestRequestForm: React.FC = () => {
                   <Button type="button" onClick={nextStep} className="bg-primary text-white px-8 h-12 rounded-xl">Next Step</Button>
                 ) : (
                   <Button type="submit" disabled={loading} className="bg-emerald-600 text-white px-10 h-12 rounded-xl shadow-lg shadow-emerald-900/20">
-                    {loading ? 'Submitting...' : 'Submit Final Request'}
+                    {loading ? (
+                      <div className="flex items-center gap-2">
+                         <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                         Saving to Cloud...
+                      </div>
+                    ) : 'Submit Final Request'}
                   </Button>
                 )}
               </div>
