@@ -1,24 +1,9 @@
 # Cloudflare Pages configuration
 name = "oncophenomics"
-type = "javascript"
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
+pages_build_output_dir = "dist"
 
-# Build configuration
-[build]
-command = "npm run build"
-cwd = "./"
-watch_paths = ["src/**/*.ts", "src/**/*.tsx"]
-
-# Build output
 [env.production]
-build = { command = "npm run build", cwd = "./" }
-routes = [
-  { pattern = "https://oncophenomics.pages.dev/*", zone_name = "pages.dev" }
-]
-
-# Environment variables for production
+# Production environment variables
 [env.production.vars]
-# Add your production environment variables here
+VITE_GEMINI_API_KEY = ""
+VITE_FIREBASE_API_KEY = ""
