@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Not Found — Redirecting</title>
+    <meta name="robots" content="noindex">
+    <script>
+      // Preserve the original path and redirect to HashRouter-compatible URL
+      (function(){
+        try {
+          const p = window.location.pathname + window.location.search + window.location.hash;
+          // If already at root, just load index
+          if (p === '/' || p === '') {
+            window.location.replace('/');
+          } else {
+            // Redirect to root and place original path after hash
+            // Example: /some/path -> /#/some/path
+            const target = '/#' + (p.startsWith('/') ? p.slice(1) : p);
+            window.location.replace(target);
+          }
+        } catch (e) {
+          window.location.replace('/');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    Redirecting…
+  </body>
+</html>
