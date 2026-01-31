@@ -45,20 +45,36 @@ const Contact: React.FC = () => {
     setErrorMsg(null);
 
     try {
-      // Save Inquiry to Firebase Firestore
-      await addDoc(collection(db, "contact_inquiries"), {
+      // Validate Firebase connection
+      if (!db) {
+        throw new Error('Firebase not initialized. Please check your configuration.');
+      }
+
+      console.log('Submitting contact form...', { formData });
+
+      // Set a timeout for Firebase submission
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Firebase submission timed out. Please try again.')), 10000)
+      );
+
+      const submitPromise = addDoc(collection(db, "contact_inquiries"), {
         ...formData,
         status: "new",
         createdAt: serverTimestamp(),
         hasAttachment: !!file
       });
+
+      // Race the submission against the timeout
+      await Promise.race([submitPromise, timeoutPromise]);
       
+      console.log('Contact form submitted successfully');
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err: any) {
       console.error('Contact Form Error:', err);
-      setErrorMsg(`Failed to secure message: ${err.message || 'Check connection'}`);
+      const errorMsg = err?.message || 'An error occurred. Please check your connection and try again.';
+      setErrorMsg(`Failed to secure message: ${errorMsg}`);
     } finally {
       setLoading(false);
     }

@@ -147,8 +147,19 @@ const TestRequestForm: React.FC = () => {
     setFormError(null);
 
     try {
-      // Save to Firebase Firestore
-      const docRef = await addDoc(collection(db, "test_requests"), {
+      // Validate Firebase connection
+      if (!db) {
+        throw new Error('Firebase not initialized. Please check your configuration.');
+      }
+
+      console.log('Submitting test request form...', { formData });
+
+      // Set a timeout for Firebase submission
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Firebase submission timed out. Please try again.')), 10000)
+      );
+
+      const submitPromise = addDoc(collection(db, "test_requests"), {
         ...formData,
         specimens: specimens.map(({id, ...rest}) => rest), // Remove local IDs
         prescriptionFileName: prescriptionFile?.name || null,
@@ -156,14 +167,18 @@ const TestRequestForm: React.FC = () => {
         status: "pending_accession",
         createdAt: serverTimestamp()
       });
+
+      // Race the submission against the timeout
+      const docRef = await Promise.race([submitPromise, timeoutPromise]);
       
-      console.log('Diagnostic Request Secured with ID:', docRef.id);
+      console.log('Diagnostic Request Secured with ID:', (docRef as any).id);
       setShowSuccess(true);
       window.scrollTo(0, 0);
 
     } catch (err: any) {
       console.error('Firebase Submission Error:', err);
-      setFormError(`Cloud storage error: ${err.message || 'Check connection'}`);
+      const errorMsg = err?.message || 'An error occurred. Please check your connection and try again.';
+      setFormError(`Cloud storage error: ${errorMsg}`);
     } finally {
       setLoading(false);
     }
