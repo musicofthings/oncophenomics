@@ -17,7 +17,7 @@ const Diagnostics: React.FC = () => {
           <div className="w-full relative overflow-hidden rounded-3xl min-h-[260px] md:h-[400px] shadow-glow transform transition-transform duration-500 group cursor-pointer">
             <div 
               className="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105" 
-              style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAI9GDVrspwHjLaoitaM_mjqPghkzmEJ8EsX26M0ePY-JM5EkyskLjWrriG7xMlm4KUfDGcvpkrxzDBME052s3nnHuBxjrHXj1hIPAofwPKNuMvD0aixcZx6_uND6oX_4JRfUZMbysGnI4MR4ruU10z8ZBXotx33-_meXKIeRlrfgdqz3mHs4o12OLCcIcHNjQFu5ZBuh3h400FuJYEthIjL__8h49jhQ__yxr5PHPzSTtziQ8P316HMrnm39ozh2NynAD8qeVCDgpA")' }}
+              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop")' }}
             ></div>
             <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary/40 to-transparent mix-blend-multiply opacity-90"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-transparent to-transparent"></div>

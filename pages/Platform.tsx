@@ -75,7 +75,7 @@ const Platform: React.FC = () => {
               <div className="flex flex-col w-48 md:w-full shrink-0 group">
                 <div className="w-48 md:w-full h-32 md:h-48 bg-slate-100 dark:bg-slate-800 rounded-xl mb-3 flex items-center justify-center relative overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700">
                   <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg">1</div>
-                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCftsmXmkhXheRtVhwtmOiWiFjHCW6V6ytwSLnP5UsAz9GnRO8Ls6z5vmgbRNIhkrtfIbTl6y9kiEtGPcjVXejtgFUI42KLq6IzVtkZmzU57QG3m7yLGs9yNs3B0lYnVcI6p6LOOOaK0eW-0pqAFcpuqoem40l2KjNZnMRqfUE7R281eP4PWAStvv8yuTJWKKkUtDLxYjEdFgsQT5_gt9UZQbkrlKcO5ryyv64og5GZBeMqiUnk8K9_1U7De6H0TjrCRI56f2eHbd8w" alt="Microscope" />
+                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop" alt="Microscope" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
                 <h3 className="text-slate-900 dark:text-white text-sm md:text-lg font-bold">Data Ingestion</h3>
@@ -85,7 +85,7 @@ const Platform: React.FC = () => {
               <div className="flex flex-col w-48 md:w-full shrink-0 group">
                 <div className="w-48 md:w-full h-32 md:h-48 bg-slate-100 dark:bg-slate-800 rounded-xl mb-3 flex items-center justify-center relative overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700">
                   <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg">2</div>
-                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkeTYnn2qja3pP4xzTb61BAxYKGsa6w2Zp4dZCqyYf2aD52Y8qlXiNxmeq1LVAX8G1kRkcI5IyxNPEuiqy3b-FUIIKwmoetkpa16GAvKEXxMpIspOFnuLyQenq7GM_blPOcX2EdfLX4yXw6HM74HaJyk7Bzcx21UH85gKuEnqBLtQpv3h1drIkGwYKHrQTe23oWbd6OmqIdVfMrIYKORmhDtMnk2mOx0h3d26y32kSjb8B2C2mUcEnIuVizDD170_McuHgVfXyElb7" alt="Brain" />
+                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1559027615-cd7e2ca8e3b8?q=80&w=800&auto=format&fit=crop" alt="Brain" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
                 <h3 className="text-slate-900 dark:text-white text-sm md:text-lg font-bold">AI Analysis</h3>
@@ -95,7 +95,7 @@ const Platform: React.FC = () => {
               <div className="flex flex-col w-48 md:w-full shrink-0 group">
                 <div className="w-48 md:w-full h-32 md:h-48 bg-slate-100 dark:bg-slate-800 rounded-xl mb-3 flex items-center justify-center relative overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700">
                   <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg">3</div>
-                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUX9QLH3dGaOs3i9-cPH4RQ8N4LkKyYuDoJHur22-kQ33K5WwKAHJIbEOeu-IlobVnfTS9hNjY4FTBW7aj0f9DRoC-8gDXmBQbHxdgEpU9A3MhkbCRcZBejj7T1xFRuxazjm8k9p2THegPa9c7VBnxKqBvXzJCet44YOxOlgXAFtyCXmkmZD-XvDxOKifoLTkFZS2NvpKQWaAhsCzD8Sd-qlWTg9Ied1TGNCz2w_XcXjQ9-j1wljJXfrw11_OjzVY2wl3ftZPZcSqy" alt="Doctor" />
+                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1576091160732-f1a450c3a4e0?q=80&w=800&auto=format&fit=crop" alt="Doctor" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
                 <h3 className="text-slate-900 dark:text-white text-sm md:text-lg font-bold">Insights</h3>

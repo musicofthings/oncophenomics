@@ -18,7 +18,7 @@ const LiquidBiopsy: React.FC = () => {
             <div className="@[480px]:px-4 @[480px]:py-3 pt-2 px-0">
               <div 
                 className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-slate-100 dark:bg-slate-800 @[480px]:rounded-2xl shadow-sm" 
-                style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuArd1mQLjswykWSz20_ej4Q9PdmYHQjZsloh1li0Tw-nZpiUjWKBMwE6YoGvUgApgMd-loXeLnSJshGSuzAtFtAuF0ftr0HXfX8bQgezdRywyrcK3ixhjb32JdE5L0S-KWY0g2cY0dCxs5MNSaoJxdD2qkZ-Vshyll4WCvVPOMbbdV1EaLeUt_2E5l2F30A9IQC9cXRWpeCQBC1gajekslu9tRjkftO6aXRbKtgy6zZqUSVT-cgEkRVNz2wiC0CX8qIOsnH1rQaS2tt")' }}
+                style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160426-112405a24bda?q=80&w=1200&auto=format&fit=crop")' }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent opacity-90"></div>
                 <div className="relative z-10 p-6 md:p-10">

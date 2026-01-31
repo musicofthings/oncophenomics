@@ -14,7 +14,7 @@ const About: React.FC = () => {
           <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-lg group ring-1 ring-slate-200 dark:ring-slate-800">
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-              style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDi9xzL1HAEBcVRj6yoepZaLJoVVlZnLI73DXRBPQHPF3qGm4CGsaUWl5jOHt7IxPajBB6erF36Ah67MkBiFmLbxQ7x7g-FRg6B-N50GT-3ZnsglephrCSdxr_8y38W6jYy1DAPmnYvaFQmzCU7fW1RCROhKdltNvCNTOpd3vexPh-cGo7Hc-1X_9O8i5Ew8ojtjFML5KtlgIfeCYqV5UgLg3ai3K0WNcrXECJmnXDgijbzCTYH6Pin7cYBl4gnEOV7LPZ6H4xMSrUr")' }}
+              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop")' }}
             >
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/40 to-transparent"></div>

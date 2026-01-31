@@ -56,7 +56,7 @@ const Home: React.FC = () => {
           <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 pb-4 px-4 md:px-6 gap-4 scrollbar-hide snap-x snap-mandatory no-scrollbar">
             
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxlGA0HuE-H_dxff1Mhg8oUGQ7sNABIwTYep0Arlyb4FmK9uqeTtWBrSbeQCvVd9a8r-fT275-q21NMEkHFpA-ksYMTUgSEAwfa8czQalsqVDmSP4-0_jjX4G3jQzceSNDJbCvvIn0woEaPVSjN1DJbcEhhkScMCcLtTl-_cy2jvrl48yvVHA-RPQvJ8KRYD-wCMEBkaX8QgFj1IGHIVTyyVqbqI5CZVLBKFFvJ_n7L3fEqg5klcSjaKWC6L8qV4AykTlfCnkto0E_")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-primary">
                   <span className="material-symbols-outlined text-[20px]">bolt</span>
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDlN59I7j1Sa_GPfT2ze3zxwLIY_eXrC_6tq-4QX7iOM3RTiDQ7DHyQAF2Fcc8xZWHU-jafDDZaV5f_YaytkIPDKzuN6K5sdWC-KNyDpI7PLt77mhFyn7L3S3-eM7i0U0dlJlHvkpLR7dP1qyli2Es8bAFIOckItHoCFmFMEo-rz7GTkNEt2JBEFpCVthXxEDikm76mx3tZGC-943diVJoZ9aNjslyO9lqAto6VrY1-ejoK4sKyolsFMJwTEjI8Xii6cdw6cmZX0Mpw")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160732-f1a450c3a4e0?q=80&w=800&auto=format&fit=crop")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-secondary">
                   <span className="material-symbols-outlined text-[20px]">medication</span>
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCftsmXmkhXheRtVhwtmOiWiFjHCW6V6ytwSLnP5UsAz9GnRO8Ls6z5vmgbRNIhkrtfIbTl6y9kiEtGPcjVXejtgFUI42KLq6IzVtkZmzU57QG3m7yLGs9yNs3B0lYnVcI6p6LOOOaK0eW-0pqAFcpuqoem40l2KjNZnMRqfUE7R281eP4PWAStvv8yuTJWKKkUtDLxYjEdFgsQT5_gt9UZQbkrlKcO5ryyv64og5GZBeMqiUnk8K9_1U7De6H0TjrCRI56f2eHbd8w")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-indigo-500">
                   <span className="material-symbols-outlined text-[20px]">hub</span>
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkeTYnn2qja3pP4xzTb61BAxYKGsa6w2Zp4dZCqyYf2aD52Y8qlXiNxmeq1LVAX8G1kRkcI5IyxNPEuiqy3b-FUIIKwmoetkpa16GAvKEXxMpIspOFnuLyQen7GM_blPOcX2EdfLX4yXw6HM74HaJyk7Bzcx21UH85gKuEnqBLtQpv3h1drIkGwYKHrQTe23oWbd6OmqIdVfMrIYKORmhDtMnk2mOx0h3d26y32kSjb8B2C2mUcEnIuVizDD170_McuHgVfXyElb7")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1559027615-cd7e2ca8e3b8?q=80&w=800&auto=format&fit=crop")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-emerald-500">
                   <span className="material-symbols-outlined text-[20px]">timeline</span>
