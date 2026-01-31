@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
@@ -57,7 +55,7 @@ export function Testimonial() {
   useEffect(() => {
     const timer = setInterval(goNext, 8000)
     return () => clearInterval(timer)
-  }, [])
+  }, [goNext])
 
   const current = testimonials[activeIndex]
 

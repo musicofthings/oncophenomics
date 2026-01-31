@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 // This configuration will be automatically populated by the AI Studio Firebase plugin 
 // when connected. For now, we use a placeholder structure.
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY || "AIzaSyDummyKeyForInitialization",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDummyKeyForInitialization",
   authDomain: "oncophenomics.firebaseapp.com",
   projectId: "oncophenomics",
   storageBucket: "oncophenomics.appspot.com",

@@ -38,10 +38,10 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = ({ title, transparent = false 
            <button onClick={() => navigate('/')} className="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-200" title="Home">
              <span className="material-symbols-outlined text-[20px]">home</span>
            </button>
-           <button onClick={() => navigate(-1)} className="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-200" title="Go Back">
+           <button onClick={() => window.history.back()} className="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-200" title="Go Back">
              <span className="material-symbols-outlined text-[20px]">arrow_back</span>
            </button>
-           <button onClick={() => navigate(1)} className="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-200" title="Go Forward">
+           <button onClick={() => window.history.forward()} className="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-200" title="Go Forward">
              <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
            </button>
         </div>
