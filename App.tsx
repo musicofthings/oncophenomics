@@ -1,4 +1,4 @@
-
+// v2.1.0 - Force redeploy with corrected headers
 import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
