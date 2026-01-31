@@ -1,0 +1,24 @@
+# Cloudflare Pages configuration
+name = "oncophenomics"
+type = "javascript"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+
+# Build configuration
+[build]
+command = "npm run build"
+cwd = "./"
+watch_paths = ["src/**/*.ts", "src/**/*.tsx"]
+
+# Build output
+[env.production]
+build = { command = "npm run build", cwd = "./" }
+routes = [
+  { pattern = "https://oncophenomics.pages.dev/*", zone_name = "pages.dev" }
+]
+
+# Environment variables for production
+[env.production.vars]
+# Add your production environment variables here
