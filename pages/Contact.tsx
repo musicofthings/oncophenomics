@@ -5,6 +5,21 @@ import GlobalHeader from '../components/GlobalHeader';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
+// Validation patterns
+const patterns = {
+  name: /^[a-zA-Z\s.'-]{2,50}$/,
+  email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  org: /^[a-zA-Z0-9\s.,'&()-]{0,100}$/,
+  message: /^.{10,1000}$/s
+};
+
+const errorMessages = {
+  name: 'Please enter a valid name (2-50 characters, letters only)',
+  email: 'Please enter a valid email address',
+  org: 'Organization name contains invalid characters',
+  message: 'Message must be between 10 and 1000 characters'
+};
+
 const Contact: React.FC = () => {
   const navigate = useNavigate();
   const formRef = useRef<HTMLDivElement>(null);
@@ -12,6 +27,7 @@ const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const [formData, setFormData] = useState({
     inquiryType: 'Patient Support',
@@ -22,11 +38,35 @@ const Contact: React.FC = () => {
   });
   const [file, setFile] = useState<File | null>(null);
 
+  const validateField = (field: string, value: string): string | null => {
+    if (field === 'org' && !value) return null; // org is optional
+    if (field === 'inquiryType') return null; // select field, always valid
+
+    const pattern = patterns[field as keyof typeof patterns];
+    if (pattern && !pattern.test(value)) {
+      return errorMessages[field as keyof typeof errorMessages];
+    }
+    return null;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
     const key = id === 'inquiry-type' ? 'inquiryType' : id;
     setFormData(prev => ({ ...prev, [key]: value }));
+
+    // Clear field error on change
+    if (fieldErrors[key]) {
+      setFieldErrors(prev => ({ ...prev, [key]: '' }));
+    }
     if (errorMsg) setErrorMsg(null);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    const error = validateField(id, value);
+    if (error) {
+      setFieldErrors(prev => ({ ...prev, [id]: error }));
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,8 +79,38 @@ const Contact: React.FC = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+
+    // Validate all required fields
+    const nameError = validateField('name', formData.name);
+    if (nameError) errors.name = nameError;
+
+    const emailError = validateField('email', formData.email);
+    if (emailError) errors.email = emailError;
+
+    const messageError = validateField('message', formData.message);
+    if (messageError) errors.message = messageError;
+
+    // Optional field validation
+    if (formData.org) {
+      const orgError = validateField('org', formData.org);
+      if (orgError) errors.org = orgError;
+    }
+
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate form before submission
+    if (!validateForm()) {
+      setErrorMsg('Please fix the errors above before submitting.');
+      return;
+    }
+
     setLoading(true);
     setErrorMsg(null);
 
@@ -82,7 +152,7 @@ const Contact: React.FC = () => {
 
   if (submitted) {
     return (
-      <div className="bg-background-light dark:bg-background-dark min-h-screen font-display flex flex-col items-center justify-center p-6 text-center">
+      <div className="bg-background-light dark:bg-background-dark font-display flex flex-col items-center justify-center p-6 text-center flex-1">
         <GlobalHeader title="Message Secured" />
         <div className="max-w-md w-full bg-white dark:bg-surface-dark p-10 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 animate-in zoom-in duration-300">
            <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -104,7 +174,7 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display antialiased selection:bg-secondary selection:text-white overflow-x-hidden">
+    <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white flex flex-col font-display antialiased selection:bg-secondary selection:text-white overflow-x-hidden">
       
       <GlobalHeader title="Contact Support" />
 
@@ -192,30 +262,37 @@ const Contact: React.FC = () => {
 
                 <div className="flex flex-col gap-1.5">
                     <label htmlFor="name" className="text-sm font-semibold text-slate-700 dark:text-slate-300">Name</label>
-                    <input 
-                        type="text" 
-                        id="name" 
+                    <input
+                        type="text"
+                        id="name"
                         disabled={loading}
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="Dr. Jane Doe" 
+                        onBlur={handleBlur}
+                        placeholder="Dr. Jane Doe"
                         required
-                        className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary transition-shadow disabled:opacity-50" 
+                        minLength={2}
+                        maxLength={50}
+                        pattern="[a-zA-Z\s.'\-]+"
+                        className={`w-full rounded-lg border ${fieldErrors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-secondary focus:ring-secondary'} bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 transition-shadow disabled:opacity-50`}
                     />
+                    {fieldErrors.name && <span className="text-xs text-red-500 mt-1">{fieldErrors.name}</span>}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
                     <label htmlFor="email" className="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email" 
+                    <input
+                        type="email"
+                        id="email"
                         disabled={loading}
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="jane.doe@hospital.org" 
+                        onBlur={handleBlur}
+                        placeholder="jane.doe@hospital.org"
                         required
-                        className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary transition-shadow disabled:opacity-50" 
+                        className={`w-full rounded-lg border ${fieldErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-secondary focus:ring-secondary'} bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 transition-shadow disabled:opacity-50`}
                     />
+                    {fieldErrors.email && <span className="text-xs text-red-500 mt-1">{fieldErrors.email}</span>}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -223,29 +300,37 @@ const Contact: React.FC = () => {
                         <label htmlFor="org" className="text-sm font-semibold text-slate-700 dark:text-slate-300">Organization / Hospital</label>
                         <span className="text-xs text-slate-400 font-normal pt-0.5">Optional</span>
                     </div>
-                    <input 
-                        type="text" 
-                        id="org" 
+                    <input
+                        type="text"
+                        id="org"
                         disabled={loading}
                         value={formData.org}
                         onChange={handleInputChange}
-                        placeholder="General Hospital" 
-                        className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary transition-shadow disabled:opacity-50" 
+                        onBlur={handleBlur}
+                        placeholder="General Hospital"
+                        maxLength={100}
+                        className={`w-full rounded-lg border ${fieldErrors.org ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-secondary focus:ring-secondary'} bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 transition-shadow disabled:opacity-50`}
                     />
+                    {fieldErrors.org && <span className="text-xs text-red-500 mt-1">{fieldErrors.org}</span>}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
                     <label htmlFor="message" className="text-sm font-semibold text-slate-700 dark:text-slate-300">Message</label>
-                    <textarea 
-                        id="message" 
-                        rows={4} 
+                    <textarea
+                        id="message"
+                        rows={4}
                         disabled={loading}
                         value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="How can we help you?" 
+                        onBlur={handleBlur}
+                        placeholder="How can we help you?"
                         required
-                        className="w-full resize-none rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary transition-shadow disabled:opacity-50"
+                        minLength={10}
+                        maxLength={1000}
+                        className={`w-full resize-none rounded-lg border ${fieldErrors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-secondary focus:ring-secondary'} bg-white dark:bg-background-dark px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 transition-shadow disabled:opacity-50`}
                     ></textarea>
+                    {fieldErrors.message && <span className="text-xs text-red-500 mt-1">{fieldErrors.message}</span>}
+                    <span className="text-xs text-slate-400 text-right">{formData.message.length}/1000</span>
                 </div>
 
                 <button 

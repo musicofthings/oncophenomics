@@ -9,12 +9,12 @@ const About: React.FC = () => {
     <div className="flex flex-col h-full font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
       <GlobalHeader title="Our Mission" />
 
-      <div className="flex-1 overflow-y-auto no-scrollbar pb-0">
+      <div className="pb-0">
         <div className="px-4 py-4">
           <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-lg group ring-1 ring-slate-200 dark:ring-slate-800">
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop")' }}
+              style={{ backgroundImage: 'url("/images/about-hero.png")' }}
             >
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/40 to-transparent"></div>
@@ -108,7 +108,7 @@ const About: React.FC = () => {
                 </a>
             </div>
             <div className="text-xs text-slate-400 dark:text-slate-500 w-full pt-6 border-t border-slate-200/60 dark:border-slate-700/60">
-                © 2024 Oncophenomics. All rights reserved.
+                © 2025 Oncophenomics. All rights reserved.
             </div>
           </div>
         </footer>

@@ -107,7 +107,7 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = ({ title, transparent = false 
              })}
           </div>
           <div className="p-8 text-center text-slate-400 text-xs border-t border-slate-100 dark:border-slate-800">
-            © 2024 Oncophenomics
+            © 2025 Oncophenomics
           </div>
         </div>
       )}

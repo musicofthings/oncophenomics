@@ -7,7 +7,7 @@ const CRO: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
+    <div className="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
       
       <GlobalHeader 
         title={
@@ -169,7 +169,7 @@ const CRO: React.FC = () => {
                 </div>
             </div>
             <div className="mt-8 text-center text-[10px] text-slate-400 uppercase tracking-widest">
-                © 2024 Oncophenomics
+                © 2025 Oncophenomics
             </div>
         </div>
       </main>

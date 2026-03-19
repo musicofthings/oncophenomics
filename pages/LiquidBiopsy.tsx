@@ -13,23 +13,19 @@ const LiquidBiopsy: React.FC = () => {
 
       <div className="w-full max-w-7xl mx-auto">
         {/* Hero */}
-        <div className="relative w-full">
-          <div className="@container">
-            <div className="@[480px]:px-4 @[480px]:py-3 pt-2 px-0">
-              <div 
-                className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-slate-100 dark:bg-slate-800 @[480px]:rounded-2xl shadow-sm" 
-                style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160426-112405a24bda?q=80&w=1200&auto=format&fit=crop")' }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent opacity-90"></div>
-                <div className="relative z-10 p-6 md:p-10">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary backdrop-blur-md px-3 py-1 rounded-full mb-3 shadow-lg shadow-primary/20">
-                    <span className="material-symbols-outlined text-white text-[16px]">science</span>
-                    <span className="text-white text-xs font-bold uppercase tracking-wide">AI Enhanced</span>
-                  </div>
-                  <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight drop-shadow-md">Liquid Biopsy</h1>
-                  <p className="text-slate-200 text-sm md:text-lg mt-1 font-medium">Next-generation circulating tumor DNA analysis</p>
-                </div>
+        <div className="px-4 py-3">
+          <div
+            className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-slate-100 dark:bg-slate-800 rounded-2xl shadow-sm"
+            style={{ backgroundImage: 'url("/images/liquid-biopsy-hero.png")' }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent opacity-90"></div>
+            <div className="relative z-10 p-6 md:p-10">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary backdrop-blur-md px-3 py-1 rounded-full mb-3 shadow-lg shadow-primary/20">
+                <span className="material-symbols-outlined text-white text-[16px]">science</span>
+                <span className="text-white text-xs font-bold uppercase tracking-wide">AI Enhanced</span>
               </div>
+              <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight drop-shadow-md">Liquid Biopsy</h1>
+              <p className="text-slate-200 text-sm md:text-lg mt-1 font-medium">Next-generation circulating tumor DNA analysis</p>
             </div>
           </div>
         </div>
@@ -184,8 +180,7 @@ const LiquidBiopsy: React.FC = () => {
           )}
         </div>
 
-        <div className="h-24 md:h-0"></div>
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 max-w-md mx-auto z-50 md:static md:bg-transparent md:border-none md:max-w-xs md:mb-12">
+        <div className="px-5 mt-6 mb-12">
           <button onClick={() => navigate('/test-request')} className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-primary/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
             <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
             <span>Order a test</span>

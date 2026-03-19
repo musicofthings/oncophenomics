@@ -52,7 +52,7 @@ export function HeroSection() {
                             {/* DNA Line Art / Model Image with grayscale effect */}
                             <div className="absolute inset-0 z-0">
                               <img 
-                                src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2000&auto=format&fit=crop" 
+                                src="/images/hero-home.png"
                                 className="size-full object-cover grayscale opacity-30 dark:opacity-20 mix-blend-overlay"
                                 alt="DNA Background"
                               />

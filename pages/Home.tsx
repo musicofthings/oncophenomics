@@ -22,9 +22,9 @@ const Home: React.FC = () => {
         {/* Hero Card */}
         <div className="p-4 md:p-6">
           <div className="relative overflow-hidden rounded-2xl shadow-lg group h-[400px] md:h-[500px] w-full">
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2000&auto=format&fit=crop")' }}
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+              style={{ backgroundImage: 'url("/images/hero-home.png")' }}
             ></div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
             <div className="relative flex flex-col items-start justify-end px-5 py-8 md:px-10 md:py-12 h-full">
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
           <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 pb-4 px-4 md:px-6 gap-4 scrollbar-hide snap-x snap-mandatory no-scrollbar">
             
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("/images/card-rapid-diagnosis.png")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-primary">
                   <span className="material-symbols-outlined text-[20px]">bolt</span>
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160732-f1a450c3a4e0?q=80&w=800&auto=format&fit=crop")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("/images/card-tailored-therapy.png")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-secondary">
                   <span className="material-symbols-outlined text-[20px]">medication</span>
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("/images/card-multi-omics.png")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-indigo-500">
                   <span className="material-symbols-outlined text-[20px]">hub</span>
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="snap-center shrink-0 w-64 md:w-auto flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1559027615-cd7e2ca8e3b8?q=80&w=800&auto=format&fit=crop")' }}></div>
+              <div className="h-32 w-full bg-cover bg-center" style={{ backgroundImage: 'url("/images/card-predictive-ai.png")' }}></div>
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2 text-emerald-500">
                   <span className="material-symbols-outlined text-[20px]">timeline</span>
@@ -164,7 +164,7 @@ const Home: React.FC = () => {
               <span className="size-1.5 rounded-full bg-primary"></span>
               Partnered with leading oncology research centers
             </span>
-            <span>© 2024 Oncophenomics. All rights reserved.</span>
+            <span>© 2025 Oncophenomics. All rights reserved.</span>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ const Platform: React.FC = () => {
           <div className="relative overflow-hidden rounded-2xl shadow-lg h-[350px] md:h-[450px] w-full group">
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 bg-slate-900"
-              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1618172193763-c511deb635ca?q=80&w=2600&auto=format&fit=crop")' }}
+              style={{ backgroundImage: 'url("/images/platform-hero.png")' }}
             ></div>
             <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-transparent"></div>
             
@@ -75,7 +75,7 @@ const Platform: React.FC = () => {
               <div className="flex flex-col w-48 md:w-full shrink-0 group">
                 <div className="w-48 md:w-full h-32 md:h-48 bg-slate-100 dark:bg-slate-800 rounded-xl mb-3 flex items-center justify-center relative overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700">
                   <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg">1</div>
-                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop" alt="Microscope" />
+                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="/images/platform-ingestion.png" alt="Data Ingestion" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
                 <h3 className="text-slate-900 dark:text-white text-sm md:text-lg font-bold">Data Ingestion</h3>
@@ -85,7 +85,7 @@ const Platform: React.FC = () => {
               <div className="flex flex-col w-48 md:w-full shrink-0 group">
                 <div className="w-48 md:w-full h-32 md:h-48 bg-slate-100 dark:bg-slate-800 rounded-xl mb-3 flex items-center justify-center relative overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700">
                   <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg">2</div>
-                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1559027615-cd7e2ca8e3b8?q=80&w=800&auto=format&fit=crop" alt="Brain" />
+                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="/images/platform-analysis.png" alt="AI Analysis" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
                 <h3 className="text-slate-900 dark:text-white text-sm md:text-lg font-bold">AI Analysis</h3>
@@ -95,7 +95,7 @@ const Platform: React.FC = () => {
               <div className="flex flex-col w-48 md:w-full shrink-0 group">
                 <div className="w-48 md:w-full h-32 md:h-48 bg-slate-100 dark:bg-slate-800 rounded-xl mb-3 flex items-center justify-center relative overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700">
                   <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold z-10 shadow-lg">3</div>
-                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1576091160732-f1a450c3a4e0?q=80&w=800&auto=format&fit=crop" alt="Doctor" />
+                  <img className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" src="/images/platform-insights.png" alt="Clinical Insights" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
                 <h3 className="text-slate-900 dark:text-white text-sm md:text-lg font-bold">Insights</h3>

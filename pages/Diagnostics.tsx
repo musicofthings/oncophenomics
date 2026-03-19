@@ -17,7 +17,7 @@ const Diagnostics: React.FC = () => {
           <div className="w-full relative overflow-hidden rounded-3xl min-h-[260px] md:h-[400px] shadow-glow transform transition-transform duration-500 group cursor-pointer">
             <div 
               className="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105" 
-              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop")' }}
+              style={{ backgroundImage: 'url("/images/diagnostics-tissue.png")' }}
             ></div>
             <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary/40 to-transparent mix-blend-multiply opacity-90"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-transparent to-transparent"></div>
@@ -128,10 +128,10 @@ const Diagnostics: React.FC = () => {
         </div>
 
         {/* Action Button */}
-        <div className="fixed bottom-16 left-0 right-0 p-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-800/50 z-50 md:static md:bg-transparent md:border-none md:p-0 md:mt-8 md:mb-12">
-          <button 
+        <div className="px-5 mt-8 mb-12">
+          <button
             onClick={() => navigate('/test-request')}
-            className="w-full max-w-md mx-auto flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-primary-dark to-secondary hover:brightness-110 text-white py-4 px-4 font-bold text-[16px] shadow-lg shadow-blue-500/25 transition-all active:scale-[0.98]"
+            className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-primary-dark to-secondary hover:brightness-110 text-white py-4 px-4 font-bold text-[16px] shadow-lg shadow-blue-500/25 transition-all active:scale-[0.98]"
           >
             <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
             Order a test
