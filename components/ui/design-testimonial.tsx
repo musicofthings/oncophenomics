@@ -4,22 +4,22 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 
 const testimonials = [
   {
-    quote: "VariantGPT has transformed our clinical interpretation process, reducing turn-around time by 70%.",
-    author: "Dr. Aris Thanasas",
-    role: "Global Oncology Lead",
-    company: "Genentech",
+    quote: "Oncophenomics has transformed our variant interpretation workflow — what used to take days now takes hours, with far greater clinical confidence.",
+    author: "Dr. Arjun Sharma",
+    role: "Senior Medical Oncologist",
+    company: "Tata Memorial Centre",
   },
   {
-    quote: "The most elegant solution for multi-omics integration we've ever implemented in our research pipeline.",
-    author: "Dr. Elena Rodriguez",
-    role: "Senior Pathologist",
-    company: "Mayo Clinic",
+    quote: "The multi-omics integration is the most comprehensive we have seen in any Indian platform. It has meaningfully elevated our genomic research pipeline.",
+    author: "Dr. Priya Nair",
+    role: "Head of Genomics & Precision Diagnostics",
+    company: "MedGenome",
   },
   {
-    quote: "Pure craftsmanship in data visualization and genomic accuracy. It's a paradigm shift for patient care.",
-    author: "Michael Chang",
-    role: "Clinical Research Director",
-    company: "Novartis",
+    quote: "A genuine paradigm shift for precision oncology in India. The AI-driven variant classification aligns with ACMG standards and our clinical expectations.",
+    author: "Dr. Rajesh Krishnamurthy",
+    role: "Director, Molecular Pathology",
+    company: "AIIMS New Delhi",
   },
 ]
 
@@ -239,7 +239,7 @@ export function Testimonial() {
           >
             {[...Array(10)].map((_, i) => (
               <span key={i} className="mx-8">
-                {testimonials.map((t) => t.company).join(" • ")} •
+                Biocon • Dr. Reddy's • MedGenome • Tata Memorial • Strand Life Sciences • Mapmygenome • AIIMS •
               </span>
             ))}
           </motion.div>
