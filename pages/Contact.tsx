@@ -1,6 +1,6 @@
 
-import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import GlobalHeader from '../components/GlobalHeader';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -22,6 +22,7 @@ const errorMessages = {
 
 const Contact: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const formRef = useRef<HTMLDivElement>(null);
 
   const [loading, setLoading] = useState(false);
@@ -74,6 +75,45 @@ const Contact: React.FC = () => {
       setFile(e.target.files[0]);
     }
   };
+
+  // Pre-fill inquiry type from query params (e.g. /contact?type=Partnership&service=drug-discovery)
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const type = params.get('type');
+    const service = params.get('service');
+    const typeMap: Record<string, string> = {
+      'Partnership': 'Partnership',
+      'Clinical Inquiry': 'Clinical Inquiry',
+      'Patient Support': 'Patient Support',
+      'Technical Issue': 'Technical Issue',
+    };
+    if (type && typeMap[type]) {
+      setFormData(prev => ({ ...prev, inquiryType: typeMap[type] }));
+    }
+    if (service) {
+      const serviceLabels: Record<string, string> = {
+        'bioinformatics-pipelines': 'Custom Bioinformatics Pipelines',
+        'data-analysis': 'Data Analysis Services',
+        'ai-agent-pipelines': 'Building AI Agent Pipelines',
+        'biopharma-qc': 'Agentic AI for Biopharma QC',
+        'drug-discovery': 'AI for Drug Discovery',
+        'variantgpt': 'VariantGPT Platform',
+        'cro': 'CRO Services',
+        'custom': 'Custom Project',
+      };
+      const label = serviceLabels[service];
+      if (label) {
+        setFormData(prev => ({
+          ...prev,
+          message: prev.message || `I am interested in learning more about: ${label}.`,
+        }));
+      }
+    }
+    // Auto-scroll to form if coming from a service card
+    if (type || service) {
+      setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+  }, [location.search]);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -158,11 +198,48 @@ const Contact: React.FC = () => {
            <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="material-symbols-outlined text-emerald-600 text-4xl">verified</span>
            </div>
-           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Request Logged</h2>
-           <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-             Thank you, <strong>{formData.name}</strong>. Your inquiry has been encrypted and saved to our clinical cloud. A response will be issued within 24 hours.
+           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-3">Request Logged</h2>
+           <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+             Thank you, <strong>{formData.name}</strong>. Your inquiry has been saved to our clinical cloud. We will respond within <strong>24 hours</strong>.
            </p>
-           <button 
+
+           {/* What happens next */}
+           <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 text-left mb-6 space-y-3">
+             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">What happens next</p>
+             {[
+               { icon: 'mail', text: 'Our team reviews your inquiry and assigns it to the right specialist.' },
+               { icon: 'phone_in_talk', text: 'Expect a call or email within 24 hours on business days.' },
+               { icon: 'task_alt', text: 'For partnerships and CRO enquiries, we will schedule a discovery call.' },
+             ].map((step, i) => (
+               <div key={i} className="flex items-start gap-3">
+                 <span className="material-symbols-outlined text-primary text-[18px] mt-0.5 shrink-0">{step.icon}</span>
+                 <p className="text-sm text-slate-600 dark:text-slate-400">{step.text}</p>
+               </div>
+             ))}
+           </div>
+
+           {/* Cross-sell while you wait */}
+           <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">While you wait, explore</p>
+           <div className="grid grid-cols-2 gap-2 mb-6">
+             <button onClick={() => navigate('/platform')} className="flex items-center gap-2 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 transition-colors text-left">
+               <span className="material-symbols-outlined text-primary text-[18px]">biotech</span>
+               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Our Platform</span>
+             </button>
+             <button onClick={() => navigate('/diagnostics')} className="flex items-center gap-2 p-3 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 hover:bg-cyan-100 transition-colors text-left">
+               <span className="material-symbols-outlined text-secondary text-[18px]">medical_services</span>
+               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Diagnostics</span>
+             </button>
+             <button onClick={() => navigate('/variant-gpt')} className="flex items-center gap-2 p-3 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 transition-colors text-left">
+               <span className="material-symbols-outlined text-indigo-500 text-[18px]">smart_toy</span>
+               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">VariantGPT</span>
+             </button>
+             <button onClick={() => navigate('/cro')} className="flex items-center gap-2 p-3 rounded-xl bg-pink-50 dark:bg-pink-900/20 hover:bg-pink-100 transition-colors text-left">
+               <span className="material-symbols-outlined text-cro-primary text-[18px]">science</span>
+               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">CRO Services</span>
+             </button>
+           </div>
+
+           <button
              onClick={() => navigate('/')}
              className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-[0.98]"
            >

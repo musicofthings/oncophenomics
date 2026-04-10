@@ -11,10 +11,10 @@ const Platform: React.FC = () => {
   };
 
   const solutions = [
-    { icon: 'biotech', title: 'Virtual Biopsy', desc: 'Non-invasive imaging analysis.', color: 'text-primary', bg: 'bg-primary/10', path: '/diagnostics' },
-    { icon: 'groups', title: 'Stratification', desc: 'Identify trial candidates.', color: 'text-green-600', bg: 'bg-green-100 dark:bg-green-900/30', path: '/liquid-biopsy' },
-    { icon: 'ads_click', title: 'Target ID', desc: 'Find new drug targets.', color: 'text-purple-600', bg: 'bg-purple-100 dark:bg-purple-900/30', path: '/cro' },
-    { icon: 'medication', title: 'Drug Discovery', desc: 'Accelerate development.', color: 'text-orange-600', bg: 'bg-orange-100 dark:bg-orange-900/30', path: '/cro' },
+    { icon: 'biotech',    title: 'Virtual Biopsy',  desc: 'Non-invasive imaging analysis.',  color: 'text-primary',    bg: 'bg-primary/10',                        path: '/diagnostics' },
+    { icon: 'groups',     title: 'Stratification',  desc: 'Identify trial candidates.',      color: 'text-green-600',  bg: 'bg-green-100 dark:bg-green-900/30',    path: '/liquid-biopsy' },
+    { icon: 'ads_click',  title: 'Variant Analysis', desc: 'AI-powered variant calling.',    color: 'text-purple-600', bg: 'bg-purple-100 dark:bg-purple-900/30',  path: '/variant-gpt' },
+    { icon: 'medication', title: 'Drug Discovery',   desc: 'Accelerate development.',         color: 'text-orange-600', bg: 'bg-orange-100 dark:bg-orange-900/30',  path: '/cro' },
   ];
 
   const benefits = [

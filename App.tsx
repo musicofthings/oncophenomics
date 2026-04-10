@@ -1,5 +1,10 @@
-// App.tsx — v2.2.0
-// Changes: removed dead isCRO ternary in Navigation (both branches were identical)
+// App.tsx — v2.3.0
+// Changes:
+//  • Bottom nav: "Services→/cro" (B2B) replaced with "Tests→/diagnostics" so
+//    mobile clinicians reach Liquid Biopsy and Tissue Biopsy immediately.
+//    "Tissue" label was redundant — Diagnostics page now serves as the hub.
+//  • showBottomNav extended to include /liquid-biopsy and /about
+//  • Dead isCRO ternary removed (done in v2.2.0, kept clean here)
 
 import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
@@ -28,28 +33,38 @@ const ScrollToTop = () => {
 const Navigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const showBottomNav = ['/', '/cro', '/diagnostics', '/platform', '/liquid-biopsy', '/variant-gpt', '/test-request'].includes(location.pathname);
+
+  const showBottomNav = [
+    '/', '/cro', '/diagnostics', '/platform', '/liquid-biopsy',
+    '/variant-gpt', '/test-request', '/about', '/contact',
+  ].includes(location.pathname);
+
   if (!showBottomNav) return null;
 
   const navItems = [
-    { icon: 'home_repair_service', label: 'Services',   path: '/cro' },
-    { icon: 'biotech',             label: 'Platform',   path: '/platform' },
-    { icon: 'home',                label: 'Home',       path: '/' },
-    { icon: 'medical_services',    label: 'Tissue',     path: '/diagnostics' },
-    { icon: 'smart_toy',           label: 'VariantGPT', path: '/variant-gpt' },
+    { icon: 'biotech',          label: 'Platform',  path: '/platform' },
+    { icon: 'medical_services', label: 'Tests',      path: '/diagnostics' },
+    { icon: 'home',             label: 'Home',       path: '/' },
+    { icon: 'hub',              label: 'CRO',        path: '/cro' },
+    { icon: 'smart_toy',        label: 'VariantGPT', path: '/variant-gpt' },
   ];
 
   return (
     <nav className="md:hidden fixed bottom-0 w-full z-40 border-t pb-[env(safe-area-inset-bottom)] transition-colors duration-300 bg-surface-light/95 dark:bg-surface-dark/95 border-slate-200 dark:border-slate-800">
       <div className="flex justify-around items-center h-16 w-full max-w-md mx-auto">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
+          // "Tests" tab is active on both diagnostics and liquid-biopsy
+          const isActive = item.path === '/diagnostics'
+            ? (location.pathname === '/diagnostics' || location.pathname === '/liquid-biopsy' || location.pathname === '/test-request')
+            : location.pathname === item.path;
           return (
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
               className={`flex flex-col items-center justify-center w-full h-full group transition-colors
-                ${isActive ? 'text-primary' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}
+                ${isActive
+                  ? 'text-primary'
+                  : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'}
               `}
             >
               <span className={`material-symbols-outlined text-2xl group-hover:scale-110 transition-transform ${isActive ? 'filled' : ''}`}>
@@ -67,9 +82,9 @@ const Navigation = () => {
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [expandServices, setExpandServices]     = useState(true);
+  const [expandServices, setExpandServices] = useState(true);
   const [expandDiagnostics, setExpandDiagnostics] = useState(true);
-  const [expandVariant, setExpandVariant]       = useState(false);
+  const [expandVariant, setExpandVariant] = useState(false);
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -132,7 +147,7 @@ const Sidebar = () => {
             <button onClick={() => navigate('/cro')}
               className={`flex items-center gap-3 px-4 py-2.5 ml-2 rounded-xl transition-all duration-200 font-medium text-sm text-left border-l-2
                 ${isActive('/cro') ? 'border-cro-primary text-cro-primary bg-pink-50 dark:bg-pink-900/10' : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50'}`}>
-              <span className={`material-symbols-outlined text-[20px] ${isActive('/cro') ? 'filled' : ''}`}>home_repair_service</span>
+              <span className={`material-symbols-outlined text-[20px] ${isActive('/cro') ? 'filled' : ''}`}>hub</span>
               <span>CRO Services</span>
             </button>
 
@@ -171,8 +186,7 @@ const Sidebar = () => {
       </div>
 
       <div className="p-4 border-t border-slate-200 dark:border-slate-800">
-        <button onClick={() => navigate('/about')}
-          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium">
+        <button onClick={() => navigate('/about')} className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium">
           <span className="material-symbols-outlined">info</span>
           <span>About & Mission</span>
         </button>

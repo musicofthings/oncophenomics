@@ -81,17 +81,17 @@ const Diagnostics: React.FC = () => {
                   Tissue biopsy remains the cornerstone of precision medicine, allowing us to map the tumor's DNA signature and match patients with specific immunotherapies and targeted drugs.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <button 
-                    onClick={() => navigate('/cro')}
+                  <button
+                    onClick={() => navigate('/platform')}
                     className="inline-flex items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors"
                   >
                     Mutation Profiling
                   </button>
-                  <button 
-                    onClick={() => navigate('/cro')}
+                  <button
+                    onClick={() => navigate('/test-request')}
                     className="inline-flex items-center rounded-lg bg-white/20 px-2.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors"
                   >
-                    Drug Matching
+                    Order Test
                   </button>
                 </div>
               </div>
@@ -125,6 +125,23 @@ const Diagnostics: React.FC = () => {
             </div>
           </div>
 
+        </div>
+
+        {/* Liquid Biopsy cross-sell */}
+        <div className="px-5 mt-2 mb-6">
+          <button
+            onClick={() => navigate('/liquid-biopsy')}
+            className="w-full flex items-center gap-4 p-4 rounded-2xl bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 dark:border-cyan-800/40 hover:border-secondary hover:shadow-md transition-all active:scale-[0.98] text-left"
+          >
+            <div className="size-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
+              <span className="material-symbols-outlined">water_drop</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-bold text-secondary uppercase tracking-wider mb-0.5">Also available</p>
+              <h4 className="text-slate-900 dark:text-white font-bold text-sm">Liquid Biopsy — Non-Invasive ctDNA Analysis</h4>
+              <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">A simple blood draw. No surgery required. Learn more →</p>
+            </div>
+          </button>
         </div>
 
         {/* Action Button */}

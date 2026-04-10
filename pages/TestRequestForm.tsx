@@ -480,17 +480,55 @@ Turnaround Time: 3-4 weeks
           <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
             <span className="material-symbols-outlined text-emerald-600 text-4xl">cloud_done</span>
           </div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Secured in Cloud</h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-            The test request for <strong>{formData.patientName}</strong> has been successfully archived in our HIPAA-compliant database.
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-3">Request Secured</h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+            The test request for <strong>{formData.patientName}</strong> has been archived in our HIPAA-compliant database.
           </p>
-          <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl mb-6 text-left">
-            <p className="text-sm text-slate-500 dark:text-slate-400">Test Ordered On</p>
-            <p className="text-lg font-bold text-slate-900 dark:text-white">{orderDate} at {orderTime}</p>
+
+          {/* Key details */}
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4 text-left mb-6 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-slate-500 dark:text-slate-400">Ordered on</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-white">{orderDate}, {orderTime}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-slate-500 dark:text-slate-400">Patient</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-white">{formData.patientName || '—'}</span>
+            </div>
+            <div className="flex justify-between items-center border-t border-slate-200 dark:border-slate-700 pt-3">
+              <span className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <span className="material-symbols-outlined text-amber-500 text-[16px]">schedule</span>
+                Turnaround Time
+              </span>
+              <span className="text-sm font-bold text-amber-600 dark:text-amber-400">3 – 4 weeks</span>
+            </div>
           </div>
-          <Button onClick={() => navigate('/')} className="w-full h-14 bg-primary hover:bg-primary-dark text-white rounded-2xl font-bold">
+
+          {/* What happens next */}
+          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-4 text-left mb-6 space-y-3">
+            <p className="text-xs font-bold text-primary uppercase tracking-wider">What happens next</p>
+            {[
+              { icon: 'call',          text: 'Our team will call to confirm sample collection logistics within 1 business day.' },
+              { icon: 'local_shipping',text: 'A sample collection kit or pickup will be arranged at your location.' },
+              { icon: 'science',       text: 'Samples are processed in our Hyderabad laboratory and analysed by our AI engine.' },
+              { icon: 'description',   text: 'Your clinical report will be delivered securely within 3–4 weeks of sample receipt.' },
+            ].map((step, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-primary text-[16px] mt-0.5 shrink-0">{step.icon}</span>
+                <p className="text-xs text-slate-600 dark:text-slate-400">{step.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <Button onClick={() => navigate('/')} className="w-full h-14 bg-primary hover:bg-primary-dark text-white rounded-2xl font-bold mb-3">
             Return to Dashboard
           </Button>
+          <button
+            onClick={() => { setShowSuccess(false); setCurrentStep(1); setFormData(prev => ({ ...prev, patientName: '', patientId: '', diagnosisHistory: '', selectedTests: {}, orderingPhysicianSignature: '', patientSignature: '' })); setSpecimens([{ id: 1, type: '', count: '', source: '', tissueFixative: '', tissueOtherType: '', anatomicSite: '', comments: '' }]); }}
+            className="w-full text-sm text-primary font-semibold hover:underline py-2"
+          >
+            Submit another request
+          </button>
         </div>
       </div>
     );

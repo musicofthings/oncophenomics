@@ -180,7 +180,33 @@ const LiquidBiopsy: React.FC = () => {
           )}
         </div>
 
-        <div className="px-5 mt-6 mb-12">
+        {/* Compare & cross-sell */}
+        <div className="px-5 mt-2 mb-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+          <button
+            onClick={() => navigate('/diagnostics')}
+            className="group flex items-center gap-3 p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/40 hover:border-primary hover:shadow-md transition-all active:scale-[0.98] text-left"
+          >
+            <span className="material-symbols-outlined text-primary text-[22px] shrink-0">compare_arrows</span>
+            <div>
+              <p className="text-xs font-bold text-primary mb-0.5">Compare with</p>
+              <p className="text-sm font-semibold text-slate-900 dark:text-white">Tissue Biopsy →</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Gold standard, cellular detail</p>
+            </div>
+          </button>
+          <button
+            onClick={() => navigate('/variant-gpt')}
+            className="group flex items-center gap-3 p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/40 hover:border-indigo-500 hover:shadow-md transition-all active:scale-[0.98] text-left"
+          >
+            <span className="material-symbols-outlined text-indigo-500 text-[22px] shrink-0">smart_toy</span>
+            <div>
+              <p className="text-xs font-bold text-indigo-500 mb-0.5">Analyse results with AI</p>
+              <p className="text-sm font-semibold text-slate-900 dark:text-white">VariantGPT →</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">VCF to clinical report in minutes</p>
+            </div>
+          </button>
+        </div>
+
+        <div className="px-5 mt-2 mb-12">
           <button onClick={() => navigate('/test-request')} className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-primary/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
             <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
             <span>Order a test</span>
