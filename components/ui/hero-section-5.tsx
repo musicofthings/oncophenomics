@@ -48,22 +48,15 @@ export function HeroSection() {
                                 </div>
                             </div>
                         </div>
+                        {/* Static hero image — no external CDN dependency */}
                         <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-black/10 sm:aspect-video lg:rounded-[3rem] dark:border-white/5 mt-20 lg:mt-0">
-                            {/* DNA Line Art / Model Image with grayscale effect */}
-                            <div className="absolute inset-0 z-0">
-                              <img 
-                                src="/images/hero-home.png"
-                                className="size-full object-cover grayscale opacity-30 dark:opacity-20 mix-blend-overlay"
-                                alt="DNA Background"
-                              />
-                            </div>
-                            <video
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75 relative z-10"
-                                src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"></video>
+                            <img
+                                src="/images/hero-variantgpt.png"
+                                className="size-full object-cover opacity-60 dark:opacity-75"
+                                alt="VariantGPT — Genomic Intelligence platform"
+                                loading="eager"
+                                decoding="async"
+                            />
                         </div>
                     </div>
                 </section>
