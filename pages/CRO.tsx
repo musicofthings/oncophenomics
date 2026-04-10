@@ -56,7 +56,7 @@ const CRO: React.FC = () => {
                 ))}
               </ul>
               <button 
-                onClick={() => navigate('/contact')}
+                onClick={() => navigate('/contact?service=cro&type=Partnership')}
                 className="w-full md:w-auto md:px-8 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity shadow-lg"
               >
                 Start Collaboration
@@ -77,37 +77,46 @@ const CRO: React.FC = () => {
                 { 
                     icon: 'genetics', color: 'text-primary', bg: 'bg-blue-50 dark:bg-blue-900/20', 
                     title: 'Custom Bioinformatics Pipelines', 
-                    desc: 'Tailored genomic profiling workflows designed to identify novel biomarkers and therapeutic targets specific to your study cohorts.' 
+                    desc: 'Tailored genomic profiling workflows designed to identify novel biomarkers and therapeutic targets specific to your study cohorts.',
+                    slug: 'bioinformatics-pipelines',
                 },
                 { 
                     icon: 'analytics', color: 'text-purple-600', bg: 'bg-purple-50 dark:bg-purple-900/20', 
                     title: 'Data Analysis Services', 
-                    desc: 'Comprehensive multi-omics data interpretation. We turn raw sequencing data into actionable clinical insights for precision medicine.' 
+                    desc: 'Comprehensive multi-omics data interpretation. We turn raw sequencing data into actionable clinical insights for precision medicine.',
+                    slug: 'data-analysis',
                 },
                 { 
                     icon: 'hub', color: 'text-cro-primary', bg: 'bg-pink-50 dark:bg-pink-900/20', 
                     title: 'Building AI Agent Pipelines', 
-                    desc: 'Deploy autonomous AI agents capable of orchestrating complex research tasks, from literature review to hypothesis generation.' 
+                    desc: 'Deploy autonomous AI agents capable of orchestrating complex research tasks, from literature review to hypothesis generation.',
+                    slug: 'ai-agent-pipelines',
                 },
                 { 
                     icon: 'fact_check', color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-900/20', 
                     title: 'Agentic AI for Biopharma QC', 
-                    desc: 'Automated quality control processes using vision-language models to ensure compliance and reduce human error in manufacturing.' 
+                    desc: 'Automated quality control processes using vision-language models to ensure compliance and reduce human error in manufacturing.',
+                    slug: 'biopharma-qc',
                 },
                 { 
                     icon: 'medication_liquid', color: 'text-amber-600', bg: 'bg-amber-50 dark:bg-amber-900/20', 
                     title: 'AI for Drug Discovery', 
-                    desc: 'Accelerate hit-to-lead optimization with generative AI models that predict molecule properties and binding affinities.' 
+                    desc: 'Accelerate hit-to-lead optimization with generative AI models that predict molecule properties and binding affinities.',
+                    slug: 'drug-discovery',
                 },
                 { 
                     icon: 'smart_toy', color: 'text-primary', bg: 'bg-blue-50 dark:bg-blue-900/20', 
                     title: 'VariantGPT Platform', 
-                    desc: 'AI Powered Clinical Variant Interpretation Platform. Interpret VCF files and generate clinician-ready reports in minutes.' 
+                    desc: 'AI Powered Clinical Variant Interpretation Platform. Interpret VCF files and generate clinician-ready reports in minutes.',
+                    slug: 'variantgpt',
                 }
             ].map((service, idx) => (
                 <div 
                   key={idx} 
-                  onClick={() => navigate('/contact')}
+                  onClick={() => service.slug === 'variantgpt'
+                    ? navigate('/variant-gpt')
+                    : navigate(`/contact?service=${service.slug}&type=Partnership`)
+                  }
                   className="bg-white/70 dark:bg-surface-dark/70 backdrop-blur-md border border-white/30 dark:border-white/5 rounded-xl p-5 hover:border-cro-primary/50 transition-all duration-300 cursor-pointer group hover:shadow-lg hover:-translate-y-0.5"
                 >
                     <div className="flex items-start justify-between mb-3">
@@ -123,7 +132,7 @@ const CRO: React.FC = () => {
         </div>
 
         {/* CTA */}
-        <div onClick={() => navigate('/contact')} className="mt-8 rounded-2xl overflow-hidden relative shadow-lg group cursor-pointer">
+        <div onClick={() => navigate('/contact?service=custom&type=Partnership')} className="mt-8 rounded-2xl overflow-hidden relative shadow-lg group cursor-pointer">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 z-0"></div>
           <div className="relative z-10 p-6 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -137,6 +146,25 @@ const CRO: React.FC = () => {
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </button>
           </div>
+        </div>
+
+        {/* VariantGPT cross-sell — directly relevant to biopharma CRO clients */}
+        <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 dark:border-primary/30 flex flex-col md:flex-row md:items-center gap-5">
+          <div className="size-14 rounded-2xl bg-primary/15 flex items-center justify-center text-primary shrink-0">
+            <span className="material-symbols-outlined text-[30px]">smart_toy</span>
+          </div>
+          <div className="flex-1">
+            <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Already sequencing?</p>
+            <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-1">Interpret your variants with VariantGPT</h4>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">Upload VCF files and receive ACMG-classified, clinician-ready reports in minutes. Integrate via REST API into your existing LIS.</p>
+          </div>
+          <button
+            onClick={() => navigate('/variant-gpt')}
+            className="shrink-0 flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-blue-600 text-white font-bold text-sm transition-all active:scale-[0.98] shadow-lg shadow-primary/20"
+          >
+            Explore VariantGPT
+            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
         </div>
 
         {/* Footer info */}

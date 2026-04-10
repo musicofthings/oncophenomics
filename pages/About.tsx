@@ -83,11 +83,27 @@ const About: React.FC = () => {
 
         <div className="h-8"></div>
 
-        <div className="px-5 pb-8">
-          <button onClick={() => navigate('/platform')} className="w-full bg-gradient-to-r from-primary to-secondary hover:from-blue-600 hover:to-cyan-600 text-white font-bold text-lg py-4 rounded-xl shadow-xl shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+        <div className="px-5 pb-4">
+          {/* Primary CTA */}
+          <button onClick={() => navigate('/platform')} className="w-full bg-gradient-to-r from-primary to-secondary hover:from-blue-600 hover:to-cyan-600 text-white font-bold text-lg py-4 rounded-xl shadow-xl shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2 mb-4">
             <span>Explore Our Technology</span>
             <span className="material-symbols-outlined text-sm">arrow_forward</span>
           </button>
+
+          {/* Quick links so About isn't a dead end */}
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { icon: 'medical_services', label: 'Order a Test',  path: '/test-request', color: 'text-primary',    bg: 'bg-blue-50 dark:bg-blue-900/20' },
+              { icon: 'hub',              label: 'CRO Services', path: '/cro',           color: 'text-cro-primary', bg: 'bg-pink-50 dark:bg-pink-900/20' },
+              { icon: 'mail',             label: 'Contact Us',   path: '/contact',       color: 'text-secondary',  bg: 'bg-cyan-50 dark:bg-cyan-900/20' },
+            ].map(item => (
+              <button key={item.path} onClick={() => navigate(item.path)}
+                className={`flex flex-col items-center gap-2 p-4 rounded-xl ${item.bg} hover:shadow-md transition-all active:scale-[0.98]`}>
+                <span className={`material-symbols-outlined ${item.color} text-[24px]`}>{item.icon}</span>
+                <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 text-center leading-tight">{item.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <footer className="bg-slate-50 dark:bg-surface-dark pt-10 pb-8 border-t border-slate-200 dark:border-slate-800 mt-4">
