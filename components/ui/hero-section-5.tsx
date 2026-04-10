@@ -64,7 +64,7 @@ export function HeroSection() {
                     <div className="group relative m-auto max-w-7xl px-6">
                         <div className="flex flex-col items-center md:flex-row">
                             <div className="md:max-w-44 md:border-r md:pr-6 border-slate-200 dark:border-slate-800">
-                                <p className="text-end text-sm text-slate-500 dark:text-slate-400">Trusted by leading research institutes</p>
+                                <p className="text-end text-sm text-slate-500 dark:text-slate-400">Trusted by leading Indian research institutes</p>
                             </div>
                             <div className="relative py-6 md:w-[calc(100%-11rem)]">
                                 <InfiniteSlider
@@ -73,32 +73,44 @@ export function HeroSection() {
                                     gap={112}>
                                     <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
                                         <span className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                            <span className="material-symbols-outlined">genetics</span>
-                                            GenoLab
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
-                                        <span className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                                             <span className="material-symbols-outlined">biotech</span>
-                                            BioX
+                                            Biocon
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
                                         <span className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                                             <span className="material-symbols-outlined">science</span>
-                                            HelixAI
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
-                                        <span className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                            <span className="material-symbols-outlined">medication</span>
-                                            PharmaCo
+                                            Dr. Reddy's
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
                                         <span className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span className="material-symbols-outlined">genetics</span>
+                                            MedGenome
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
+                                        <span className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                                             <span className="material-symbols-outlined">hub</span>
-                                            OmicsNet
+                                            Strand Life Sciences
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
+                                        <span className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span className="material-symbols-outlined">monitor_heart</span>
+                                            Oncostem
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
+                                        <span className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span className="material-symbols-outlined">medication</span>
+                                            Mapmygenome
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-center grayscale opacity-70 hover:opacity-100 transition-opacity">
+                                        <span className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span className="material-symbols-outlined">analytics</span>
+                                            Jubilant Pharmova
                                         </span>
                                     </div>
                                 </InfiniteSlider>
